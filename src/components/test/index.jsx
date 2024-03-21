@@ -72,13 +72,18 @@ const Test = ({ mode }) => {
       let sim = 0;
       let title = -1;
 
+      const doSearch = (val1, val2, original) => {
+        const tempSim = similarity(val1, val2);
+        if (tempSim > sim) {
+          sim = tempSim;
+          title = original;
+        }
+      };
+
       alts.forEach((alts) => {
+        doSearch(value, alts.main, alts.main);
         alts.alt.forEach((alt) => {
-          const tempSim = similarity(value, alt);
-          if (tempSim > sim) {
-            sim = tempSim;
-            title = alts.main;
-          }
+          doSearch(value, alt, alts.main);
         });
       });
 
