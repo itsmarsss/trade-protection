@@ -34,8 +34,10 @@
     background: var(--background-light);
 }
 
-.test_arguments>div>ul>li.correct {
-    filter: blur(0px);
+.test_arguments>div>ul>li.correct:after  {
+    transition: 500ms;
+    transform: translateY(-50%);
+    background: transparent;
 }
 
 .test_panel {

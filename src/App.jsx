@@ -67,9 +67,9 @@ const App = () => {
   const pageMapOptions = {
     selector: {
       "h1,a": "#ffffffcc",
-      "h2,h3,h4,span": "#ffffff66",
+      "h2,h3,h4,span,li": "#ffffff66",
       "header,footer,section,article": "#ffffff11",
-      "div": "#ffffff1a",
+      "div": "#ffffff11",
     },
     width: 100,
     height: 200,
