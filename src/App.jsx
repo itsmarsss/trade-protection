@@ -66,16 +66,16 @@ const App = () => {
   const contentRef = React.createRef();
   const pageMapOptions = {
     selector: {
-      "h1,a,span": "#ffffffcc",
-      "h2,h3,h4": "#ffffff66",
-      "header,footer,section,article": "#ffffff1a",
-      div: "#ffffff1a",
+      "h1,a": "#ffffffcc",
+      "h2,h3,h4,span": "#ffffff66",
+      "header,footer,section,article": "#ffffff11",
+      "div": "#ffffff1a",
     },
     width: 100,
-    height: 200,
+    height: 250,
     background: "#0000000",
-    drag: "#00000033",
-    viewport: "#000000aa",
+    drag: "#000000aa",
+    viewport: "#00000066",
   };
 
   return (
@@ -97,8 +97,8 @@ const App = () => {
             <Simulation />
           )}
         </div>
+        <PageMap container={contentRef} options={pageMapOptions} />
       </div>
-      <PageMap container={contentRef} options={pageMapOptions} />
     </>
   );
 };

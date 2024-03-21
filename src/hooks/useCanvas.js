@@ -6,23 +6,25 @@ export function useCanvas(options) {
     const [containerRef, setContainerRef] = useState(null);
     const [drag, setDrag] = useState(false);
 
+    const onDraw = (ctx) => {
+        if (containerRef) {
+            draw(options, ctx, containerRef, drag);
+        }
+    }
+        
     useEffect(() => {
         const canvasObj = canvasRef.current;
         const ctx = canvasObj.getContext("2d");
+        
         resizeCanvas(canvasObj, options.width, options.height);
+        onDraw(ctx);
+        
+        const intervalId = setInterval(() => {
+            onDraw(ctx);
+        }, 50);
 
-        const handleDraw = () => {
-            draw(options, ctx, containerRef, drag);
-        };
+        return () => clearInterval(intervalId);
 
-        setInterval(() => {
-            if (containerRef) {
-                containerRef.addEventListener("scroll", handleDraw);
-                containerRef.addEventListener("load", handleDraw);
-                containerRef.addEventListener("resize", handleDraw);
-                draw(options, ctx, containerRef);
-            }
-        }, 10)
     });
 
     return [canvasRef, setContainerRef, setDrag, drag];

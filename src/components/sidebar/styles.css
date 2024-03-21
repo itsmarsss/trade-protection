@@ -19,7 +19,7 @@
 }
 
 .sidebar_option {
-    padding: 5px;
+    padding: 5px 10px;
     text-align: left;
     border-radius: 10px;
     transition: 100ms;

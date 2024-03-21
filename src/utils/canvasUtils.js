@@ -66,7 +66,6 @@ const drawBackground = (options, container, context) => {
 };
 
 export const draw = (options, ctx, containerRef, isDrag) => {
-    ctx.clearRect(0, 0, options.width, options.height);
     //draw background
     drawBackground(options, containerRef, ctx);
     //content
