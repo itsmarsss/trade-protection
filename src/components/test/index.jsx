@@ -1,6 +1,6 @@
 import "./styles.css";
 import History from "../history";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const Test = ({mode}) => {
   const [value, setValue] = useState("");
@@ -8,6 +8,8 @@ const Test = ({mode}) => {
   const [correct, setCorrect] = useState(0);
   const [attempt, setAttempt] = useState(0.00001);
   const [second, setSecond] = useState(0);
+  const [history, setHistory] = useState([]);
+  const timerIdRef = useRef(null);
 
   const forArgs = [
     "Protection of infant (sunrise) industries",
@@ -77,6 +79,13 @@ const Test = ({mode}) => {
     return costs[s2.length];
   }
 
+  const handleReset = () => {
+    setSecond(0);
+    setArgs(forArgs.concat(againstArgs));
+    setCorrect(0);
+    setAttempt(0.00001);
+  }
+
   const handleEnter = () => {
     let sim = 0;
     let index = -1;
@@ -99,13 +108,30 @@ const Test = ({mode}) => {
     }
   
     if (attempt === 0.00001) {
-      setInterval(() => {
+      timerIdRef.current = setInterval(() => {
         setSecond(second => second + 1);
       }, 1000);
     }
-  
+
     setAttempt(attempt + 1);
+
+    if(args.length === 16) {
+      const updatedHistory = [...history, {
+        mode: "Memory",
+        second: second,
+        correct: correct,
+        attempt: attempt
+      }];
+      setHistory(updatedHistory);
+      
+      clearInterval(timerIdRef.current);
+    }
+  
   };
+
+  useEffect(() => {
+    handleReset();
+  }, [mode]);
 
   return (
     <>
@@ -156,13 +182,18 @@ const Test = ({mode}) => {
             type="button" value="&#8594;"
             onClick={handleEnter}
           />
+          <input
+            className="test_panel_restart"
+            type="button" value="&#8634;"
+            onClick={handleReset}
+          />
         </div>
         <div className="test_panel_stats">
           <span>Time: {Math.floor(second / 60)}:{String(second % 60).padStart(2, "0")}</span>
           <span>Attempts: {correct}/{attempt.toFixed(0)} ({(correct*100/attempt).toFixed(2)}%)</span>
         </div>
       </div>
-      <History/>
+      <History history={history}/>
     </>
   );
 };

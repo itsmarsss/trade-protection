@@ -1,0 +1,17 @@
+.history {
+    margin-top: 20px;
+}
+
+.history_title {
+    font-size: 25px;
+    border-bottom: 1px solid var(--text);
+    margin-bottom: 5px;
+}
+
+.history_entry {
+    display: flex;
+}
+
+.history_entry>* {
+    flex: 1;
+}
