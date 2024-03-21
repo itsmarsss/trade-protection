@@ -84,40 +84,53 @@ const Test = ({mode}) => {
     setArgs(forArgs.concat(againstArgs));
     setCorrect(0);
     setAttempt(0.00001);
+    clearInterval(timerIdRef.current);
   }
 
   const handleEnter = () => {
-    let sim = 0;
-    let index = -1;
-  
-    args.forEach((arg, idx) => {
-      const tempSim = similarity(value, arg);
-      if (tempSim > sim) {
-        sim = tempSim;
-        index = idx;
+    if(mode === 0) {
+      let sim = 0;
+      let index = -1;
+    
+      args.forEach((arg, idx) => {
+        const tempSim = similarity(value, arg);
+        if (tempSim > sim) {
+          sim = tempSim;
+          index = idx;
+        }
+      });
+    
+      if (sim >= 0.7) {
+        const updatedArgs = [...args];
+        updatedArgs.splice(index, 1);
+    
+        setArgs(updatedArgs);
+    
+        setCorrect(correct + 1);
       }
-    });
-  
-    if (sim >= 0.7) {
-      const updatedArgs = [...args];
-      updatedArgs.splice(index, 1);
-  
-      setArgs(updatedArgs);
-  
-      setCorrect(correct + 1);
-    }
-  
-    if (attempt === 0.00001) {
-      timerIdRef.current = setInterval(() => {
-        setSecond(second => second + 1);
-      }, 1000);
-    }
+    
+      if (attempt === 0.00001) {
+        timerIdRef.current = setInterval(() => {
+          setSecond(second => second + 1);
+        }, 1000);
+      }
 
-    setAttempt(attempt + 1);
+      setAttempt(attempt + 1);
 
-    if(args.length === 16) {
+      if(args.length === 0) {
+        const updatedHistory = [...history, {
+          mode: "Memory",
+          second: second,
+          correct: correct,
+          attempt: attempt
+        }];
+        setHistory(updatedHistory);
+        
+        clearInterval(timerIdRef.current);
+      }
+    } else {
       const updatedHistory = [...history, {
-        mode: "Memory",
+        mode: "Identify",
         second: second,
         correct: correct,
         attempt: attempt
@@ -126,7 +139,6 @@ const Test = ({mode}) => {
       
       clearInterval(timerIdRef.current);
     }
-  
   };
 
   useEffect(() => {
@@ -138,7 +150,10 @@ const Test = ({mode}) => {
       <div className="test_title">{mode == 0 ? "Memory" : "Identify"}</div>
       {mode == 1 ? 
       (<>
-        <div className="test_scenario"></div>
+        <div className="test_scenario">
+          <span>Argument for scenario:</span>{" "}
+          <span className="test_scenario_text">Lorem Ipsum</span>
+        </div>
       </>) :
       (<>
         <div className="test_arguments">
@@ -193,7 +208,10 @@ const Test = ({mode}) => {
           <span>Attempts: {correct}/{attempt.toFixed(0)} ({(correct*100/attempt).toFixed(2)}%)</span>
         </div>
       </div>
-      <History history={history}/>
+      <History 
+        history={history}
+        clearHistory={() => setHistory([])}
+      />
     </>
   );
 };

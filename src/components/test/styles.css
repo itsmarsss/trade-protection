@@ -19,8 +19,8 @@
 
 .test_arguments>div>ul>li {
     position: relative;
-    width: max-content;
     height: min-content;
+    margin-top: 5px;
 }
 
 .test_arguments>div>ul>li:after {
@@ -40,6 +40,10 @@
     background: transparent;
 }
 
+.test_scenario {
+    margin: 20px 0;
+}
+
 .test_panel {
     display: flex;
     flex-direction: column;
@@ -48,6 +52,7 @@
 
 .test_panel_input {
     display: flex;
+    gap: 5px;
 }
 
 .test_panel_guess {
