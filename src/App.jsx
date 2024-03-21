@@ -36,7 +36,7 @@ const App = () => {
 
   useEffect(() => {
     document.addEventListener("mousemove", (e) => {
-      if (e.y > 250) {
+      if (e.y + window.scrollY > 250) {
         const puffers = document.getElementsByClassName("puff_letter");
         Array.from(puffers).forEach((puffer) => {
           puffer.style.transition = "100ms";
