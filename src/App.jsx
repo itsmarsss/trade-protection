@@ -11,14 +11,19 @@ const App = () => {
   const [tab, setTab] = useState(0);
   const [selected, setSelected] = useState(0);
   const [prevX, setPrevX] = useState(0);
+  const [slide, setSlide] = useState(false);
 
   const switchTab = (index) => {
     setTab(index);
-    setSelected(0);
+    handleSelected(0);
   };
 
   const handleSelected = (index) => {
     setSelected(index);
+    setSlide(true);
+    setTimeout(() => {
+      setSlide(false);
+    }, 200);
   };
 
   const tabs = [
@@ -69,7 +74,7 @@ const App = () => {
       "h1,a": "#ffffffcc",
       "h2,h3,h4,span,li": "#ffffff66",
       "header,footer,section,article": "#ffffff11",
-      "div": "#ffffff11",
+      div: "#ffffff11",
     },
     width: 100,
     height: 300,
@@ -88,7 +93,7 @@ const App = () => {
           selected={selected}
           switchSelected={handleSelected}
         />
-        <div className="content">
+        <div className={"content" + (slide ? " slide" : "")}>
           {tab == 0 ? (
             <Train page={selected} />
           ) : tab == 1 ? (

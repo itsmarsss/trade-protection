@@ -28,6 +28,11 @@
   top: calc(-1 * var(--content-shift));
   margin-bottom: calc(-1 * var(--content-shift));
   text-align: left;
+  transition: 100ms;
+}
+
+.slide {
+  animation: 100ms linear slide_in;
 }
 
 ::-webkit-scrollbar {
@@ -42,4 +47,15 @@
   background-color: var(--background-light);
   border-radius: 20px;
   border: 3px solid var(--background);
+}
+
+@keyframes slide_in {
+  from {
+    transform: translateX(10px);
+    filter: blur(10px);
+  }
+
+  to {
+    transform: translateX(0);
+  }
 }
