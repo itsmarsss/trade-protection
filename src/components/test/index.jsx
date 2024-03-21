@@ -1,41 +1,21 @@
 import "./styles.css";
 import History from "../history";
 import { useEffect, useRef, useState } from "react";
+import { forArgs, againstArgs, allArgs } from "../../data/arguments"
 
-const Test = ({mode}) => {
+const Test = ({ mode }) => {
   const [value, setValue] = useState("");
-  const [args, setArgs] = useState([]);
+  const [args, setArgs] = useState(allArgs);
+  const [alts, setAlts] = useState(forArgs.concat(againstArgs));
   const [correct, setCorrect] = useState(0);
   const [attempt, setAttempt] = useState(0.00001);
   const [second, setSecond] = useState(0);
   const [history, setHistory] = useState([]);
   const timerIdRef = useRef(null);
 
-  const forArgs = [
-    "Protection of infant (sunrise) industries",
-    "National security",
-    "Maintenance of health and safety",
-    "Environmental standard",
-    "Anti-dumping",
-    "Unfair competition",
-    "Balance-of-payments correction",
-    "Sources of government revenue",
-    "Protection of jobs",
-    "Economically least developed country (ELDC) diversification"
-  ];
-
-  const againstArgs = [
-    "Misallocation of resources",
-    "Retaliation",
-    "Increased costs",
-    "Higher prices",
-    "Less choice",
-    "Lack of incentive for domestic firms to become more efficient",
-    "Reduced export competitiveness"
-  ];
-
   useEffect(() => {
-    setArgs(forArgs.concat(againstArgs));
+    setArgs(allArgs);
+    setAlts(forArgs.concat(againstArgs));
   }, []);
 
   function similarity(s1, s2) {
@@ -81,34 +61,37 @@ const Test = ({mode}) => {
 
   const handleReset = () => {
     setSecond(0);
-    setArgs(forArgs.concat(againstArgs));
+    setArgs(allArgs);
     setCorrect(0);
     setAttempt(0.00001);
     clearInterval(timerIdRef.current);
   }
 
   const handleEnter = () => {
-    if(mode === 0) {
+    if (mode === 0) {
       let sim = 0;
-      let index = -1;
-    
-      args.forEach((arg, idx) => {
-        const tempSim = similarity(value, arg);
-        if (tempSim > sim) {
-          sim = tempSim;
-          index = idx;
-        }
+      let title = -1;
+
+      alts.forEach((alts) => {
+        alts.alt.forEach((alt) => {
+          const tempSim = similarity(value, alt);
+          if (tempSim > sim) {
+            sim = tempSim;
+            title = alts.main;
+          }
+        });
       });
-    
-      if (sim >= 0.7) {
+
+      const index = args.indexOf(title);
+      if (sim >= 0.7 && index !== -1) {
         const updatedArgs = [...args];
         updatedArgs.splice(index, 1);
-    
+
         setArgs(updatedArgs);
-    
+
         setCorrect(correct + 1);
       }
-    
+
       if (attempt === 0.00001) {
         timerIdRef.current = setInterval(() => {
           setSecond(second => second + 1);
@@ -117,7 +100,7 @@ const Test = ({mode}) => {
 
       setAttempt(attempt + 1);
 
-      if(args.length === 0) {
+      if (args.length === 0) {
         const updatedHistory = [...history, {
           mode: "Memory",
           second: second,
@@ -125,7 +108,7 @@ const Test = ({mode}) => {
           attempt: attempt
         }];
         setHistory(updatedHistory);
-        
+
         clearInterval(timerIdRef.current);
       }
     } else {
@@ -136,7 +119,7 @@ const Test = ({mode}) => {
         attempt: attempt
       }];
       setHistory(updatedHistory);
-      
+
       clearInterval(timerIdRef.current);
     }
   };
@@ -148,45 +131,45 @@ const Test = ({mode}) => {
   return (
     <>
       <div className="test_title">{mode == 0 ? "Memory" : "Identify"}</div>
-      {mode == 1 ? 
-      (<>
-        <div className="test_scenario">
-          <span>Argument for scenario:</span>{" "}
-          <span className="test_scenario_text">Lorem Ipsum</span>
-        </div>
-      </>) :
-      (<>
-        <div className="test_arguments">
-          <div className="test_arguments_for">
-            <ul>
-              <span className="test_arguments_title">For</span>
-              {forArgs.map((forArg, index) => (
-                <li
-                  className={args.includes(forArg) ? "" : "correct"}
-                  key={index}>{forArg}</li>
-              ))}
-            </ul>
+      {mode == 1 ?
+        (<>
+          <div className="test_scenario">
+            <span>Argument for scenario:</span>{" "}
+            <span className="test_scenario_text">Lorem Ipsum</span>
           </div>
-          <div className="test_arguments_against">
-            <ul>
-              <span className="test_arguments_title">Against</span>
-              {againstArgs.map((againstArg, index) => (
-                <li
-                  className={args.includes(againstArg) ? "" : "correct"}
-                  key={index}>{againstArg}</li>
-              ))}
-            </ul>
+        </>) :
+        (<>
+          <div className="test_arguments">
+            <div className="test_arguments_for">
+              <ul>
+                <span className="test_arguments_title">For</span>
+                {forArgs.map((forArg, index) => (
+                  <li
+                    className={args.includes(forArg.main) ? "" : "correct"}
+                    key={index}>{forArg.main}</li>
+                ))}
+              </ul>
+            </div>
+            <div className="test_arguments_against">
+              <ul>
+                <span className="test_arguments_title">Against</span>
+                {againstArgs.map((againstArg, index) => (
+                  <li
+                    className={args.includes(againstArg.main) ? "" : "correct"}
+                    key={index}>{againstArg.main}</li>
+                ))}
+              </ul>
+            </div>
           </div>
-        </div>
-      </>)}
+        </>)}
       <div className="test_panel">
         <div className="test_panel_input">
-          <input 
+          <input
             className="test_panel_guess"
             type="text"
             onChange={(e) => setValue(e.target.value)}
             onKeyDown={(e) => {
-              if(e.key == "Enter") {
+              if (e.key == "Enter") {
                 handleEnter();
                 e.target.value = "";
               }
@@ -205,10 +188,10 @@ const Test = ({mode}) => {
         </div>
         <div className="test_panel_stats">
           <span>Time: {Math.floor(second / 60)}:{String(second % 60).padStart(2, "0")}</span>
-          <span>Attempts: {correct}/{attempt.toFixed(0)} ({(correct*100/attempt).toFixed(2)}%)</span>
+          <span>Attempts: {correct}/{attempt.toFixed(0)} ({(correct * 100 / attempt).toFixed(2)}%)</span>
         </div>
       </div>
-      <History 
+      <History
         history={history}
         clearHistory={() => setHistory([])}
       />

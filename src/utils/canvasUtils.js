@@ -22,6 +22,12 @@ export const resizeCanvas = (canvas, w, h) => {
 const rectOfElement = (el, container, options) => {
     const { x, y } = container.getBoundingClientRect();
     const elementDim = el.getBoundingClientRect();
+    // console.log(elementDim.left, elementDim.top);
+    // const checkEl = document.elementFromPoint(elementDim.left, elementDim.top);
+    // console.log(checkEl)
+    // if(!checkEl.isSameNode(el)) {
+    //     return Rect(0, 0, 0, 0);
+    // }
     const hRatio = options.height / container.scrollHeight;
     const wRatio = options.width / container.scrollWidth;
     return Rect(
