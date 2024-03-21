@@ -10,7 +10,9 @@
 }
 
 .history_entries {
-    height: 500px;
+    padding: 5px 0;
+    height: auto;
+    max-height: 500px;
     overflow-y: auto;
 }
 
@@ -32,6 +34,6 @@
 }
 
 .history_clear {
-    width: calc(100% - 10px);
-    margin-left: 5px;
+    width: 100%;
+    margin-top: 5px;
 }

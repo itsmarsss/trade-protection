@@ -1,3 +1,4 @@
 .train {
     flex: 1;
+    width: fit-content;
 }

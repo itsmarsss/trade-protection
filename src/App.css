@@ -23,7 +23,7 @@
 .content {
   --content-shift: 250px;
   position: relative;
-  width: calc(100% - var(--content-shift));
+  width: calc(100% - 1.75 * var(--content-shift));
   left: var(--content-shift);
   top: calc(-1 * var(--content-shift));
   margin-bottom: calc(-1 * var(--content-shift));

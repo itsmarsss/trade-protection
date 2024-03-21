@@ -72,7 +72,7 @@ const App = () => {
       "div": "#ffffff11",
     },
     width: 100,
-    height: 200,
+    height: 300,
     background: "#0000000",
     drag: "#000000aa",
     viewport: "#00000066",

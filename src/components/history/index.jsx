@@ -18,12 +18,12 @@ const History = ({history, clearHistory}) => {
                     <span>{entry.correct}/{entry.attempt.toFixed(0)} ({(entry.correct*100/entry.attempt).toFixed(2)}%)</span>
                 </div>
             ))}
-            <input
-              className="history_clear"
-              type="button" value="Clear"
-              onClick={clearHistory}
-            />
           </div>
+          <input
+            className="history_clear"
+            type="button" value="Clear"
+            onClick={clearHistory}
+          />
       </div>
     </>
   );
