@@ -1,12 +1,10 @@
 import { useEffect, useState } from "react";
 import "./styles.css";
 
-const SideBar = ({ title, options }) => {
-  const [selected, setSelected] = useState(0);
-
-  useEffect(() => {
-    setSelected(0);
-  }, [options]);
+const SideBar = ({ title, options, selected, switchSelected }) => {
+  const handleSelected = (index) => {
+    switchSelected(index);
+  };
 
   return (
     <div className="sidebar">
@@ -17,7 +15,7 @@ const SideBar = ({ title, options }) => {
             className={
               "sidebar_option" + (index == selected ? " highlighted" : "")
             }
-            onClick={() => setSelected(index)}
+            onClick={() => handleSelected(index)}
             key={index}
           >
             {option}

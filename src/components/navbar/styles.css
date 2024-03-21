@@ -1,7 +1,5 @@
 .navbar {
     --navbar-pad: 50px;
-    position: sticky;
-    top: 0;
     width: calc(100% - 2 * var(--navbar-pad));
     padding: var(--navbar-pad);
     padding-top: 10px;
