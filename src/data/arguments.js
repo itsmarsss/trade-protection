@@ -278,3 +278,176 @@ export const allArgs = [
   "Lack of incentive for domestic firms to become more efficient",
   "Reduced export competitiveness",
 ];
+
+export const scenarios = [
+  {
+    answer: "Protection of infant (sunrise) industries",
+    scenarios: [
+      "A country implements tariffs to shield its emerging technology sector from foreign competition.",
+      "Government subsidies are provided to support the growth of newly established industries in a nation.",
+      "Trade regulations are enacted to prevent foreign companies from flooding the market and stifling domestic startups.",
+      "Special economic zones are established to provide incentives for companies in nascent industries to flourish.",
+      "Investment in research and development initiatives is increased to foster the growth of sunrise industries.",
+    ],
+  },
+  {
+    answer: "National security",
+    scenarios: [
+      "Stricter border controls are implemented to safeguard against potential terrorist threats.",
+      "Government agencies collaborate to counter cyberattacks and protect critical infrastructure.",
+      "Military spending is increased to ensure the nation's defense capabilities remain robust.",
+      "Diplomatic alliances are formed to enhance collective security in the face of geopolitical challenges.",
+      "Surveillance measures are intensified to mitigate risks to national sovereignty and territorial integrity.",
+    ],
+  },
+  {
+    answer: "Maintenance of health and safety",
+    scenarios: [
+      "Stringent regulations are imposed on food processing facilities to uphold product safety standards.",
+      "Public health campaigns are launched to promote vaccination and disease prevention.",
+      "Workplace safety inspections are conducted regularly to reduce the risk of accidents and injuries.",
+      "Environmental pollution controls are enforced to safeguard air and water quality.",
+      "Emergency response protocols are implemented to ensure effective crisis management during health emergencies.",
+    ],
+  },
+  {
+    answer: "Environmental standard",
+    scenarios: [
+      "Renewable energy incentives are introduced to encourage the adoption of clean energy technologies.",
+      "Protected areas are designated to preserve biodiversity and wildlife habitats.",
+      "Emission trading schemes are implemented to reduce greenhouse gas emissions.",
+      "Waste management policies are enacted to promote recycling and minimize landfill waste.",
+      "Environmental impact assessments are conducted for proposed development projects to mitigate ecological damage.",
+    ],
+  },
+  {
+    answer: "Anti-dumping",
+    scenarios: [
+      "Import tariffs are imposed on foreign goods to counteract unfair trade practices.",
+      "Trade agreements include provisions to prevent the dumping of subsidized products into domestic markets.",
+      "Trade remedies such as countervailing duties are levied on imported goods sold below fair market value.",
+      "Investigations are conducted to assess the impact of dumped imports on domestic industries.",
+      "Export subsidies are reduced to comply with international trade rules and discourage dumping behavior.",
+    ],
+  },
+  {
+    answer: "Unfair competition",
+    scenarios: [
+      "Laws are enacted to prohibit predatory pricing and monopolistic practices.",
+      "Trade agreements include clauses to promote fair competition and prevent market manipulation.",
+      "Regulatory authorities enforce antitrust laws to ensure a level playing field for all businesses.",
+      "Market surveillance measures are implemented to detect and deter unfair trade practices.",
+      "Consumer protection laws are strengthened to safeguard against deceptive advertising and unfair business practices.",
+    ],
+  },
+  {
+    answer: "Balance-of-payments correction",
+    scenarios: [
+      "Exchange rate adjustments are made to address trade imbalances and stabilize the economy.",
+      "International borrowing is utilized to finance deficits and alleviate pressure on the balance of payments.",
+      "Export promotion initiatives are launched to boost foreign exchange earnings and improve trade performance.",
+      "Import restrictions are imposed to conserve foreign exchange reserves and reduce import dependency.",
+      "Fiscal austerity measures are implemented to reduce government spending and narrow the current account deficit.",
+    ],
+  },
+  {
+    answer: "Sources of government revenue",
+    scenarios: [
+      "Tax reforms are introduced to broaden the tax base and increase government revenue.",
+      "Privatization initiatives are undertaken to generate income through the sale of state-owned assets.",
+      "User fees are imposed for government services to supplement revenue streams.",
+      "Customs duties are increased on imported goods to boost revenue collection.",
+      "Revenue-sharing agreements are negotiated with resource-extracting industries to secure government income.",
+    ],
+  },
+  {
+    answer: "Protection of jobs",
+    scenarios: [
+      "Import quotas are imposed to limit foreign competition and preserve domestic employment.",
+      "Labor market regulations are strengthened to protect workers' rights and prevent job displacement.",
+      "Job training programs are implemented to enhance workforce skills and promote employment stability.",
+      "Subsidies are provided to struggling industries to prevent layoffs and maintain job levels.",
+      "Trade agreements include provisions to safeguard labor standards and prevent job outsourcing.",
+    ],
+  },
+  {
+    answer: "Economically least developed country (ELDC) diversification",
+    scenarios: [
+      "Foreign aid is allocated to support economic diversification initiatives in less developed countries.",
+      "Infrastructure investments are made to create new economic opportunities in rural areas.",
+      "Trade preferences are granted to encourage export diversification and reduce dependence on primary commodities.",
+      "Capacity-building programs are implemented to develop key sectors and enhance competitiveness.",
+      "Microfinance schemes are established to promote entrepreneurship and empower marginalized communities.",
+    ],
+  },
+  {
+    answer: "Misallocation of resources",
+    scenarios: [
+      "Government subsidies are directed towards inefficient industries with little economic viability.",
+      "Public investments are misallocated due to corruption and lack of transparency in procurement processes.",
+      "Resource-intensive projects are prioritized over sustainable development initiatives.",
+      "Regulatory barriers hinder the reallocation of resources to more productive sectors of the economy.",
+      "Inadequate infrastructure leads to inefficiencies in resource utilization and distribution.",
+    ],
+  },
+  {
+    answer: "Retaliation",
+    scenarios: [
+      "Trade sanctions are imposed in response to unfair trade practices by another country.",
+      "Tariffs are raised on specific imports to counteract discriminatory trade policies by trading partners.",
+      "Diplomatic relations are strained due to retaliatory measures taken in response to political actions.",
+      "Export bans are implemented on strategic goods in retaliation for similar actions taken by other nations.",
+      "Trade negotiations stall as countries engage in tit-for-tat tariff increases in retaliation for perceived trade injustices.",
+    ],
+  },
+  {
+    answer: "Increased costs",
+    scenarios: [
+      "Rising raw material prices lead to increased production costs for manufacturing companies.",
+      "Energy price spikes result in higher operating expenses for businesses reliant on electricity and fuel.",
+      "Supply chain disruptions cause transportation costs to soar for import-dependent industries.",
+      "New regulatory requirements necessitate investments in compliance measures, driving up costs for affected businesses.",
+      "Escalating labor costs due to wage hikes or labor shortages contribute to overall cost inflation across industries.",
+    ],
+  },
+  {
+    answer: "Higher prices",
+    scenarios: [
+      "Supply shortages and increased demand lead to price hikes for essential goods such as food and fuel.",
+      "Currency devaluation results in higher import prices for goods and services sourced from foreign markets.",
+      "Tariff increases on imported goods raise retail prices for consumers purchasing foreign-made products.",
+      "Production cost escalations are passed on to consumers through higher retail prices for manufactured goods.",
+      "Market monopolies exert pricing power, allowing companies to raise prices without fear of competitive pressure.",
+    ],
+  },
+  {
+    answer: "Less choice",
+    scenarios: [
+      "Market consolidation reduces competition, resulting in fewer options for consumers.",
+      "Product recalls lead to temporary shortages of certain items, limiting choices for consumers.",
+      "Trade barriers such as tariffs and quotas restrict the variety of imported goods available in the domestic market.",
+      "Retail store closures decrease the number of available brands and products in shopping malls and districts.",
+      "Discontinuation of unpopular products by manufacturers reduces consumer choices in specific product categories.",
+    ],
+  },
+  {
+    answer: "Lack of incentive for domestic firms to become more efficient",
+    scenarios: [
+      "Protectionist policies shield domestic firms from foreign competition, reducing the pressure to innovate and improve efficiency.",
+      "Government subsidies provide financial support to struggling industries without requiring efficiency improvements in return.",
+      "Monopolistic market structures eliminate competitive pressures, reducing the motivation for firms to invest in efficiency enhancements.",
+      "Low interest rates discourage capital investment in productivity-enhancing technologies and equipment.",
+      "Insufficient enforcement of intellectual property rights discourages innovation and hinders technological advancements.",
+    ],
+  },
+  {
+    answer: "Reduced export competitiveness",
+    scenarios: [
+      "Currency appreciation makes exports more expensive for foreign buyers, eroding competitiveness in global markets.",
+      "Trade barriers such as tariffs and quotas imposed by trading partners disadvantage domestic exporters relative to foreign competitors.",
+      "Deterioration of infrastructure and logistics networks increases transportation costs for exporters, reducing price competitiveness.",
+      "Subsidies provided to foreign competitors give them a cost advantage over domestic exporters in international markets.",
+      "Differences in regulatory standards between countries create compliance burdens that put domestic exporters at a disadvantage.",
+    ],
+  },
+];

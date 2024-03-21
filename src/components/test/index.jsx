@@ -1,10 +1,12 @@
 import "./styles.css";
 import History from "../history";
 import { useEffect, useRef, useState } from "react";
-import { forArgs, againstArgs, allArgs } from "../../data/arguments"
+import { forArgs, againstArgs, allArgs, scenarios } from "../../data/arguments"
 
 const Test = ({ mode }) => {
   const [value, setValue] = useState("");
+  const [scenario, setScenario] = useState("");
+  const [scenarioAnswers, setScenarioAnswers] = useState([]);
   const [args, setArgs] = useState(allArgs);
   const [alts, setAlts] = useState(forArgs.concat(againstArgs));
   const [correct, setCorrect] = useState(0);
@@ -65,21 +67,40 @@ const Test = ({ mode }) => {
     setCorrect(0);
     setAttempt(0.00001);
     clearInterval(timerIdRef.current);
+
+    if (mode === 1) {
+      startTimer();
+      const policy = scenarios[Math.floor(Math.random() * scenarios.length)];
+      setScenario(policy.scenarios[Math.floor(Math.random() * policy.scenarios.length)]);
+      for (let i = 0; i < alts.length; i++) {
+        if (alts[i].main === policy.answer) {
+          const updatedAlts = [...alts[i].alt];
+          updatedAlts.push(alts[i].main);
+          setScenarioAnswers(updatedAlts);
+        }
+      }
+    }
   }
 
-  const handleEnter = () => {
+  const startTimer = () => {
+    timerIdRef.current = setInterval(() => {
+      setSecond(second => second + 1);
+    }, 1000);
+  }
+
+  const handleEnter = (e) => {
+    let sim = 0;
+    let title = "N/A";
+
+    const doSearch = (val1, val2, original) => {
+      const tempSim = similarity(val1, val2);
+      if (tempSim > sim) {
+        sim = tempSim;
+        title = original;
+      }
+    };
+
     if (mode === 0) {
-      let sim = 0;
-      let title = -1;
-
-      const doSearch = (val1, val2, original) => {
-        const tempSim = similarity(val1, val2);
-        if (tempSim > sim) {
-          sim = tempSim;
-          title = original;
-        }
-      };
-
       alts.forEach((alts) => {
         doSearch(value, alts.main, alts.main);
         alts.alt.forEach((alt) => {
@@ -98,9 +119,7 @@ const Test = ({ mode }) => {
       }
 
       if (attempt === 0.00001) {
-        timerIdRef.current = setInterval(() => {
-          setSecond(second => second + 1);
-        }, 1000);
+        startTimer();
       }
 
       setAttempt(attempt + 1);
@@ -117,16 +136,32 @@ const Test = ({ mode }) => {
         clearInterval(timerIdRef.current);
       }
     } else {
-      const updatedHistory = [...history, {
-        mode: "Identify",
-        second: second,
-        correct: correct,
-        attempt: attempt
-      }];
-      setHistory(updatedHistory);
+      scenarioAnswers.forEach((answer) => {
+        doSearch(value, answer, scenarioAnswers[scenarioAnswers.length - 1]);
+      });
 
-      clearInterval(timerIdRef.current);
+      const index = args.indexOf(title);
+
+      console.log(value, title, sim, index)
+
+      if (sim >= 0.7 && index !== -1) {
+        setCorrect(correct + 1);
+
+        const updatedHistory = [...history, {
+          mode: "Identify",
+          second: second,
+          correct: correct,
+          attempt: attempt
+        }];
+        setHistory(updatedHistory);
+
+        clearInterval(timerIdRef.current);
+      }
+
+      setAttempt(attempt + 1);
     }
+
+    e.value = "";
   };
 
   useEffect(() => {
@@ -139,8 +174,8 @@ const Test = ({ mode }) => {
       {mode == 1 ?
         (<>
           <div className="test_scenario">
-            <span>Argument for scenario:</span>{" "}
-            <span className="test_scenario_text">Lorem Ipsum</span>
+            <span><b>Argument for scenario:</b></span>{" "}
+            <span className="test_scenario_text">{scenario}</span>
           </div>
         </>) :
         (<>
@@ -175,15 +210,14 @@ const Test = ({ mode }) => {
             onChange={(e) => setValue(e.target.value)}
             onKeyDown={(e) => {
               if (e.key == "Enter") {
-                handleEnter();
-                e.target.value = "";
+                handleEnter(e.target);
               }
             }}
           />
           <input
             className="test_panel_go"
             type="button" value="&#8594;"
-            onClick={handleEnter}
+            onClick={(e) => handleEnter(e.target.previousSibling)}
           />
           <input
             className="test_panel_restart"
