@@ -1,0 +1,29 @@
+.baritem {
+    position: relative;
+    padding: 0 5px;
+    font-size: 25px;
+    cursor: pointer;
+    transition: 100ms;
+}
+
+.baritem:after {
+    content: "";
+    z-index: -1;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--text);
+    transform: scaleY(0.1);
+    transform-origin: bottom;
+    transition: 100ms;
+}
+
+.baritem:hover {
+    color: var(--background);
+}
+
+.baritem:hover:after {
+    transform: scaleY(1);
+}

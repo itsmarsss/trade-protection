@@ -1,0 +1,25 @@
+.navbar {
+    --navbar-pad: 50px;
+    position: sticky;
+    top: 0;
+    width: calc(100% - 2 * var(--navbar-pad));
+    padding: var(--navbar-pad);
+    padding-top: 10px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--text);
+}
+
+.title {
+    display: flex;
+    justify-content: space-between;
+}
+
+.baritems {
+    display: flex;
+    gap: 20px;
+}
+
+.puff_letter {
+    font-size: 100px;
+    transition: ease-in 50ms;
+}

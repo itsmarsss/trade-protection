@@ -1,0 +1,35 @@
+.sidebar {
+    position: sticky;
+    top: 50px;
+    left: 30px;
+    width: 150px;
+}
+
+.sidebar_title {
+    font-size: 20px;
+    text-align: left;
+    border-bottom: 1px solid var(--text);
+}
+
+.sidebar_options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px 0;
+}
+
+.sidebar_option {
+    padding: 5px;
+    text-align: left;
+    border-radius: 10px;
+    transition: 100ms;
+}
+
+.sidebar_option.highlighted {
+    background: var(--background-light);
+    transform: translateX(10px);
+}
+
+.sidebar_option:hover {
+    background: var(--background-light);
+}
