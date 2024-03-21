@@ -6,6 +6,8 @@ import { forArgs, againstArgs, allArgs, scenarios } from "../../data/arguments"
 const Test = ({ mode }) => {
   const [value, setValue] = useState("");
   const [scenario, setScenario] = useState("");
+  const [answer, setAnswer] = useState("");
+  const [win, setWin] = useState(false);
   const [scenarioAnswers, setScenarioAnswers] = useState([]);
   const [args, setArgs] = useState(allArgs);
   const [alts, setAlts] = useState(forArgs.concat(againstArgs));
@@ -66,16 +68,19 @@ const Test = ({ mode }) => {
     setArgs(allArgs);
     setCorrect(0);
     setAttempt(0.00001);
+    setWin(false);
     clearInterval(timerIdRef.current);
 
     if (mode === 1) {
       startTimer();
       const policy = scenarios[Math.floor(Math.random() * scenarios.length)];
       setScenario(policy.scenarios[Math.floor(Math.random() * policy.scenarios.length)]);
+
       for (let i = 0; i < alts.length; i++) {
         if (alts[i].main === policy.answer) {
           const updatedAlts = [...alts[i].alt];
           updatedAlts.push(alts[i].main);
+          setAnswer(alts[i].main);
           setScenarioAnswers(updatedAlts);
         }
       }
@@ -89,8 +94,14 @@ const Test = ({ mode }) => {
   }
 
   const handleEnter = (e) => {
+    if(win) {
+      return;
+    }
+
     let sim = 0;
     let title = "N/A";
+
+    setAttempt(attempt + 1);
 
     const doSearch = (val1, val2, original) => {
       const tempSim = similarity(val1, val2);
@@ -116,24 +127,23 @@ const Test = ({ mode }) => {
         setArgs(updatedArgs);
 
         setCorrect(correct + 1);
+
+        if (updatedArgs.length === 0) {
+          const updatedHistory = [...history, {
+            mode: "Memory",
+            second: second,
+            correct: correct + 1,
+            attempt: attempt + 1
+          }];
+          setHistory(updatedHistory);
+          setWin(true);
+
+          clearInterval(timerIdRef.current);
+        }
       }
 
       if (attempt === 0.00001) {
         startTimer();
-      }
-
-      setAttempt(attempt + 1);
-
-      if (args.length === 0) {
-        const updatedHistory = [...history, {
-          mode: "Memory",
-          second: second,
-          correct: correct,
-          attempt: attempt
-        }];
-        setHistory(updatedHistory);
-
-        clearInterval(timerIdRef.current);
       }
     } else {
       scenarioAnswers.forEach((answer) => {
@@ -142,23 +152,20 @@ const Test = ({ mode }) => {
 
       const index = args.indexOf(title);
 
-      console.log(value, title, sim, index)
-
       if (sim >= 0.7 && index !== -1) {
         setCorrect(correct + 1);
 
         const updatedHistory = [...history, {
           mode: "Identify",
           second: second,
-          correct: correct,
-          attempt: attempt
+          correct: correct + 1,
+          attempt: attempt + 1
         }];
         setHistory(updatedHistory);
+        setWin(true);
 
         clearInterval(timerIdRef.current);
       }
-
-      setAttempt(attempt + 1);
     }
 
     e.value = "";
@@ -174,8 +181,9 @@ const Test = ({ mode }) => {
       {mode == 1 ?
         (<>
           <div className="test_scenario">
-            <span><b>Argument for scenario:</b></span>{" "}
-            <span className="test_scenario_text">{scenario}</span>
+            <span><b>Argument for scenario:</b> {scenario}</span>
+            <br /><br />
+            <span><b>Answer for scenario:</b> <span className={"test_scenario_answer" + (win ? " correct" : "")}>{answer}</span></span>
           </div>
         </>) :
         (<>
