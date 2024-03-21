@@ -1,7 +1,7 @@
 import "./styles.css";
 import History from "../history";
 import { useEffect, useRef, useState } from "react";
-import { forArgs, againstArgs, allArgs, scenarios } from "../../data/arguments"
+import { forArgs, againstArgs, allArgs, scenarios } from "../../data/arguments";
 
 const Test = ({ mode }) => {
   const [value, setValue] = useState("");
@@ -33,7 +33,9 @@ const Test = ({ mode }) => {
     if (longerLength == 0) {
       return 1.0;
     }
-    return (longerLength - editDistance(longer, shorter)) / parseFloat(longerLength);
+    return (
+      (longerLength - editDistance(longer, shorter)) / parseFloat(longerLength)
+    );
   }
 
   function editDistance(s1, s2) {
@@ -44,21 +46,18 @@ const Test = ({ mode }) => {
     for (var i = 0; i <= s1.length; i++) {
       var lastValue = i;
       for (var j = 0; j <= s2.length; j++) {
-        if (i == 0)
-          costs[j] = j;
+        if (i == 0) costs[j] = j;
         else {
           if (j > 0) {
             var newValue = costs[j - 1];
             if (s1.charAt(i - 1) != s2.charAt(j - 1))
-              newValue = Math.min(Math.min(newValue, lastValue),
-                costs[j]) + 1;
+              newValue = Math.min(Math.min(newValue, lastValue), costs[j]) + 1;
             costs[j - 1] = lastValue;
             lastValue = newValue;
           }
         }
       }
-      if (i > 0)
-        costs[s2.length] = lastValue;
+      if (i > 0) costs[s2.length] = lastValue;
     }
     return costs[s2.length];
   }
@@ -74,7 +73,9 @@ const Test = ({ mode }) => {
     if (mode === 1) {
       startTimer();
       const policy = scenarios[Math.floor(Math.random() * scenarios.length)];
-      setScenario(policy.scenarios[Math.floor(Math.random() * policy.scenarios.length)]);
+      setScenario(
+        policy.scenarios[Math.floor(Math.random() * policy.scenarios.length)]
+      );
 
       for (let i = 0; i < alts.length; i++) {
         if (alts[i].main === policy.answer) {
@@ -85,16 +86,16 @@ const Test = ({ mode }) => {
         }
       }
     }
-  }
+  };
 
   const startTimer = () => {
     timerIdRef.current = setInterval(() => {
-      setSecond(second => second + 1);
+      setSecond((second) => second + 1);
     }, 1000);
-  }
+  };
 
   const handleEnter = (e) => {
-    if(win) {
+    if (win) {
       return;
     }
 
@@ -129,12 +130,15 @@ const Test = ({ mode }) => {
         setCorrect(correct + 1);
 
         if (updatedArgs.length === 0) {
-          const updatedHistory = [...history, {
-            mode: "Memory",
-            second: second,
-            correct: correct + 1,
-            attempt: attempt + 1
-          }];
+          const updatedHistory = [
+            ...history,
+            {
+              mode: "Memory",
+              second: second,
+              correct: correct + 1,
+              attempt: attempt + 1,
+            },
+          ];
           setHistory(updatedHistory);
           setWin(true);
 
@@ -155,12 +159,15 @@ const Test = ({ mode }) => {
       if (sim >= 0.7 && index !== -1) {
         setCorrect(correct + 1);
 
-        const updatedHistory = [...history, {
-          mode: "Identify",
-          second: second,
-          correct: correct + 1,
-          attempt: attempt + 1
-        }];
+        const updatedHistory = [
+          ...history,
+          {
+            mode: "Identify",
+            second: second,
+            correct: correct + 1,
+            attempt: attempt + 1,
+          },
+        ];
         setHistory(updatedHistory);
         setWin(true);
 
@@ -178,15 +185,26 @@ const Test = ({ mode }) => {
   return (
     <>
       <div className="test_title">{mode == 0 ? "Memory" : "Identify"}</div>
-      {mode == 1 ?
-        (<>
+      {mode == 1 ? (
+        <>
           <div className="test_scenario">
-            <span><b>Argument for scenario:</b> {scenario}</span>
-            <br /><br />
-            <span><b>Answer for scenario:</b> <span className={"test_scenario_answer" + (win ? " correct" : "")}>{answer}</span></span>
+            <span>
+              <b>Argument for scenario:</b> {scenario}
+            </span>
+            <br />
+            <br />
+            <span>
+              <b>Answer for scenario:</b>{" "}
+              <span
+                className={"test_scenario_answer" + (win ? " correct" : "")}
+              >
+                {answer}
+              </span>
+            </span>
           </div>
-        </>) :
-        (<>
+        </>
+      ) : (
+        <>
           <div className="test_arguments">
             <div className="test_arguments_for">
               <ul>
@@ -194,7 +212,10 @@ const Test = ({ mode }) => {
                 {forArgs.map((forArg, index) => (
                   <li
                     className={args.includes(forArg.main) ? "" : "correct"}
-                    key={index}>{forArg.main}</li>
+                    key={index}
+                  >
+                    {forArg.main}
+                  </li>
                 ))}
               </ul>
             </div>
@@ -204,12 +225,16 @@ const Test = ({ mode }) => {
                 {againstArgs.map((againstArg, index) => (
                   <li
                     className={args.includes(againstArg.main) ? "" : "correct"}
-                    key={index}>{againstArg.main}</li>
+                    key={index}
+                  >
+                    {againstArg.main}
+                  </li>
                 ))}
               </ul>
             </div>
           </div>
-        </>)}
+        </>
+      )}
       <div className="test_panel">
         <div className="test_panel_input">
           <input
@@ -224,24 +249,29 @@ const Test = ({ mode }) => {
           />
           <input
             className="test_panel_go"
-            type="button" value="&#8594;"
+            type="button"
+            value="&#8594;"
             onClick={(e) => handleEnter(e.target.previousSibling)}
           />
           <input
             className="test_panel_restart"
-            type="button" value="&#8634;"
+            type="button"
+            value="&#8634;"
             onClick={handleReset}
           />
         </div>
         <div className="test_panel_stats">
-          <span>Time: {Math.floor(second / 60)}:{String(second % 60).padStart(2, "0")}</span>
-          <span>Attempts: {correct}/{attempt.toFixed(0)} ({(correct * 100 / attempt).toFixed(2)}%)</span>
+          <span>
+            Time: {Math.floor(second / 60)}:
+            {String(second % 60).padStart(2, "0")}
+          </span>
+          <span>
+            Attempts: {correct}/{attempt.toFixed(0)} (
+            {((correct * 100) / attempt).toFixed(2)}%)
+          </span>
         </div>
       </div>
-      <History
-        history={history}
-        clearHistory={() => setHistory([])}
-      />
+      <History history={history} clearHistory={() => setHistory([])} />
     </>
   );
 };

@@ -17,8 +17,14 @@
 }
 
 .history_entry {
+    overflow: hidden;
     display: flex;
     padding: 3px 10px;
+    transition: height 200ms, padding 200ms;
+}
+
+.history_entry:nth-child(n+1) {
+    animation: 200ms linear history_entry_fadein;
 }
 
 .history_entry:first-child {
@@ -36,4 +42,18 @@
 .history_clear {
     width: 100%;
     margin-top: 5px;
+}
+
+@keyframes history_entry_fadein {
+    from {
+        height: 0;
+        padding: 0;
+        opacity: 0;
+    }
+
+    to {
+        height: 24px;
+        padding: 3px 10px;
+        opacity: 1;
+    }
 }

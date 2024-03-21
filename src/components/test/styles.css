@@ -23,6 +23,7 @@
     margin-top: 5px;
 }
 
+.test_scenario_answer:after,
 .test_arguments>div>ul>li:after {
     --shrink: 5px;
     content: "";
@@ -34,9 +35,11 @@
     background: var(--background-light);
 }
 
-.test_arguments>div>ul>li.correct:after  {
+.test_scenario_answer.correct:after,
+.test_arguments>div>ul>li.correct:after {
     transition: 500ms;
-    transform: translateY(-50%);
+    transform: scaleY(0);
+    transform-origin: bottom;
     background: transparent;
 }
 
@@ -46,23 +49,6 @@
 
 .test_scenario_answer {
     position: relative;
-}
-
-.test_scenario_answer:after {
-    --shrink: 5px;
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    background: var(--background-light);
-}
-
-.test_scenario_answer.correct:after  {
-    transition: 500ms;
-    transform: translateY(-50%);
-    background: transparent;
 }
 
 .test_panel {

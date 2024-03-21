@@ -11,14 +11,14 @@ export function useCanvas(options) {
             draw(options, ctx, containerRef, drag);
         }
     }
-        
+
     useEffect(() => {
         const canvasObj = canvasRef.current;
         const ctx = canvasObj.getContext("2d");
-        
+
         resizeCanvas(canvasObj, options.width, options.height);
         onDraw(ctx);
-        
+
         const intervalId = setInterval(() => {
             onDraw(ctx);
         }, 50);
