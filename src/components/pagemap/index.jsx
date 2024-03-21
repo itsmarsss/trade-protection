@@ -11,9 +11,14 @@ const Pagemap = ({ container, options }) => {
 
   const handleDrag = (ev) => {
     ev.preventDefault();
+    const element = document.querySelector(".pagemap");
+    const rect = element.getBoundingClientRect();
+    const left = (ev.clientX - rect.left) / (options.width / container.current.scrollWidth);
+    const top = (ev.clientY - rect.top) / (options.height / container.current.scrollHeight) - window.innerHeight/2;
+
     window.scrollTo({
-      left: ev.clientX / (options.width / window.innerWidth),
-      top: ev.clientY / (options.height / window.innerHeight),
+      left: left,
+      top: top,
       behavior: "auto",
     });
   };

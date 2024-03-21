@@ -5,8 +5,9 @@ import SideBar from "./components/sidebar";
 import Train from "./components/train";
 import Test from "./components/test";
 import Simulation from "./components/simulation";
+import PageMap from "./components/pagemap";
 
-const App = React.forwardRef((props, ref) => {
+const App = () => {
   const [tab, setTab] = useState(0);
   const [selected, setSelected] = useState(0);
   const [prevX, setPrevX] = useState(0);
@@ -62,9 +63,24 @@ const App = React.forwardRef((props, ref) => {
     });
   }, []);
 
+  const contentRef = React.createRef();
+  const pageMapOptions = {
+    selector: {
+      "h1,a,span": "#ffffffcc",
+      "h2,h3,h4": "#ffffff66",
+      "header,footer,section,article": "#ffffff1a",
+      div: "#ffffff1a",
+    },
+    width: 100,
+    height: 200,
+    background: "#0000000",
+    drag: "#00000033",
+    viewport: "#000000aa",
+  };
+
   return (
     <>
-      <div ref={ref}>
+      <div ref={contentRef}>
         <NavBar text={"TRADE PROTECTION"} switchTabs={switchTab} />
         <SideBar
           title={tabs[tab].title}
@@ -82,8 +98,9 @@ const App = React.forwardRef((props, ref) => {
           )}
         </div>
       </div>
+      <PageMap container={contentRef} options={pageMapOptions} />
     </>
   );
-});
+};
 
 export default App;

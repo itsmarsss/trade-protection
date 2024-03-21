@@ -36,10 +36,10 @@ const rectOfViewport = (options, container) => {
     const hRatio = options.height / container.scrollHeight;
     const wRatio = options.width / container.scrollWidth;
     return Rect(
-        container.scrollLeft * hRatio,
-        container.scrollTop * hRatio,
-        container.offsetWidth * wRatio,
-        container.offsetHeight * hRatio
+        window.scrollX * hRatio,
+        window.scrollY * hRatio,
+        window.innerWidth * wRatio,
+        window.innerHeight * hRatio
     );
 };
 
