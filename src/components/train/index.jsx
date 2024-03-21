@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./styles.css";
-import Content from "../content";
+import Markdown from "react-markdown";
 
-const Train = ({ contentRef, page }) => {
+const Train = ({ page }) => {
   const [content, setContent] = useState("");
 
   const pages = [
@@ -39,7 +39,7 @@ const Train = ({ contentRef, page }) => {
   return (
     <>
       <div className="train">
-        <Content ref={contentRef} content={content} />
+        <Markdown children={content} />
       </div>
     </>
   );

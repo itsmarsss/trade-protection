@@ -1,0 +1,69 @@
+.test_title {
+    font-size: 30px;
+    border-bottom: 1px solid var(--text);
+}
+
+.test_arguments {
+    display: flex;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.test_arguments>div {
+    flex: 1;
+}
+
+.test_arguments_title {
+    font-size: 25px;
+}
+
+.test_arguments>div>ul>li {
+    position: relative;
+    width: max-content;
+    height: min-content;
+}
+
+.test_arguments>div>ul>li:after {
+    --shrink: 5px;
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: var(--background-light);
+}
+
+.test_arguments>div>ul>li.correct {
+    filter: blur(0px);
+}
+
+.test_panel {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.test_panel_input {
+    display: flex;
+}
+
+.test_panel_guess {
+    flex: 1;
+    background: var(--background-light);
+}
+
+.test_panel_go {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.test_panel_stats {
+    display: flex;
+    font-size: 20px;
+}
+
+.test_panel_stats>* {
+    flex: 1;
+}

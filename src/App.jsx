@@ -30,7 +30,7 @@ const App = () => {
         "Free trade versus trade protection",
       ],
     },
-    { title: "Mode", options: ["Identify", "Memory"] },
+    { title: "Mode", options: ["Memory", "Identify"] },
     { title: "Statistics", options: ["Money", "Goods"] },
   ];
 
@@ -72,7 +72,7 @@ const App = () => {
       "div": "#ffffff1a",
     },
     width: 100,
-    height: 250,
+    height: 200,
     background: "#0000000",
     drag: "#000000aa",
     viewport: "#00000066",

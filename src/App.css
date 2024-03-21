@@ -27,6 +27,7 @@
   left: var(--content-shift);
   top: calc(-1 * var(--content-shift));
   margin-bottom: calc(-1 * var(--content-shift));
+  text-align: left;
 }
 
 ::-webkit-scrollbar {
