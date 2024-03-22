@@ -22,8 +22,8 @@ const Simulation = () => {
   const PRICE = 10;
   const QUANTITY = 10_000;
 
-  const DEMAND_M = 1;
-  const SUPPLY_M = -1;
+  const SUPPLY_M = 1 / 2_500;
+  const DEMAND_M = -1 / 2_500; // +20
 
   const [userTurn, setUserTurn] = useState(true);
 
@@ -46,7 +46,6 @@ const Simulation = () => {
 
   const [foreignProtection, setForeignProtection] = useState(0);
   const [foreignProtectionValue, setForeignProtectionValue] = useState(0);
-
   const [foreignAggressionIndex, setForeignAggressionIndex] = useState(5);
 
   //const [allData, setAllData] = useState([budget]);
@@ -57,7 +56,11 @@ const Simulation = () => {
   const [subsidizeDomesticValueBuffer, setSubsidizeDomesticValueBuffer] =
     useState(0);
 
-  const handleFreeTrade = () => {
+  const handleFreeTrade = (newDomesticPrice) => {
+    const newExportQuantity =
+      50000 - 2500 * newDomesticPrice - 2500 * newDomesticPrice;
+
+    setExportQuantity(newExportQuantity);
     console.log("ft");
     return true;
   };
@@ -83,7 +86,6 @@ const Simulation = () => {
   const handleNextFrame = () => {
     setUserTurn(false);
 
-    // const isAble = handleProtectionMap[domesticProtectionBuffer]();
     let expenses = subsidizeDomesticValueBuffer;
     if (domesticProtectionBuffer == 3) {
       expenses += domesticProtectionValueBuffer;
@@ -108,6 +110,9 @@ const Simulation = () => {
 
     const newDomesticQuantity = QUANTITY * newDomesticMultiplier;
     setDomesticQuantity(newDomesticQuantity);
+
+    const isAble =
+      handleProtectionMap[domesticProtectionBuffer](newDomesticPrice);
   };
 
   return (
@@ -156,6 +161,8 @@ const Simulation = () => {
       <br />
       <span>foreignProtectionValue: {foreignProtectionValue}</span>
       <br />
+      <span>foreignAggressionIndex: {foreignAggressionIndex}</span>
+      <br />
       <br />
       <br />
       <span>
@@ -186,7 +193,9 @@ const Simulation = () => {
         placeholder={protectionMap[domesticProtectionBuffer]}
         min={1}
         value={domesticProtectionValueBuffer}
-        onChange={(e) => setDomesticProtectionValueBuffer(e.target.value)}
+        onChange={(e) =>
+          setDomesticProtectionValueBuffer(Number(e.target.value))
+        }
         disabled={!userTurn}
       />
 
@@ -195,7 +204,9 @@ const Simulation = () => {
         placeholder="Normal Subsidy"
         min={0}
         value={subsidizeDomesticValueBuffer}
-        onChange={(e) => setSubsidizeDomesticValueBuffer(e.target.value)}
+        onChange={(e) =>
+          setSubsidizeDomesticValueBuffer(Number(e.target.value))
+        }
         disabled={!userTurn}
       />
 
