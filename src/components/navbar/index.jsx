@@ -37,7 +37,7 @@ const NavBar = ({ text, switchTabs }) => {
         <div className="title">
           {letters.map((letter, index) => (
             <span className="puff_letter" key={index}>
-              {letter}
+              {letter == " " ? <>&#x2022;</> : letter}
             </span>
           ))}
         </div>

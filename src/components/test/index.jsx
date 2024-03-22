@@ -239,6 +239,7 @@ const Test = ({ mode }) => {
         <div className="test_panel_input">
           <input
             className="test_panel_guess"
+            placeholder="Type answer..."
             type="text"
             onChange={(e) => setValue(e.target.value)}
             onKeyDown={(e) => {

@@ -34,9 +34,10 @@ const App = () => {
         "Arguments against trade protection",
         "Free trade versus trade protection",
       ],
+      fixed: false,
     },
-    { title: "Mode", options: ["Memory", "Identify"] },
-    { title: "Statistics", options: ["Money", "Goods"] },
+    { title: "Mode", options: ["Memory", "Identify"], fixed: false },
+    { title: "Statistics", options: ["Money", "Goods"], fixed: true },
   ];
 
   useEffect(() => {
@@ -90,6 +91,7 @@ const App = () => {
         <SideBar
           title={tabs[tab].title}
           options={tabs[tab].options}
+          fixed={tabs[tab].fixed}
           selected={selected}
           switchSelected={handleSelected}
         />
