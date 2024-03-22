@@ -41,6 +41,7 @@ input[type="text"] {
   cursor: text;
 }
 
+select,
 input {
   border-radius: 8px;
   border: 5px solid transparent;
@@ -54,10 +55,13 @@ input {
   transition: 200ms;
 }
 
+select:hover,
 input:hover {
   outline: 1px solid #646cff;
 }
 
+select:focus,
+select:focus-visible,
 input:focus,
 input:focus-visible {
   border-color: var(--background);
