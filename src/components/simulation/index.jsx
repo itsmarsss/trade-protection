@@ -1,21 +1,24 @@
 import { useEffect, useState } from "react";
 import "./styles.css";
+import Message from "../message";
 
 const Simulation = () => {
   const OPENAIKEY = import.meta.env.VITE_OPENAIKEY;
 
+  const [imported, setImported] = useState("");
+  const [exported, setExported] = useState("");
   const [promptData, setPromptData] = useState({});
   const [value, setValue] = useState("");
+  const [latestAI, setLatestAI] = useState({});
 
-  useEffect(() => {
+  const handleSetup = () => {
     const tempPromptData = {
       messages: [
         {
           role: "system",
-          content: `
-You, AI, will act as a country engaging in trade negotiations with the user, USER, representing another country. There are only 2 products: Salmon, which AI exports to USER's country, and beef, which AI imports from USER's country. Both countries have the option to impose tariffs or quotas on products or subsidize their own firms. They may also invest in their firms to increase output and decrease prices. This will be a turn-based game where USER makes the initial decision, and AI will respond with the consequences of USER's decision while also making a choice for AI's country.
+          content: `You, AI, will act as a country engaging in trade negotiations with the user, USER, representing another country. There are only 2 products: ${imported}, which AI exports to USER's country, and ${exported}, which AI imports from USER's country. Both countries have the option to impose tariffs or quotas on products or subsidize their own firms. They may also invest in their firms to increase output and decrease prices. This will be a turn-based game where USER makes the initial decision, and AI will respond with the consequences of USER's decision while also making a choice for AI's country.
 
-You will be talking to the USER, so use "you" refering to USER.
+You will be talking DIRECTLY to the USER, you will use "you" instead of "USER".
 
 USER makes the first move.
 
@@ -55,25 +58,19 @@ Your response will STRICTLY follow this JSON structure, DO NO add anything else:
 "hasArgument": true/false (for/against argument met),
 "argument": "if there is a for/against argument, put argument here",
 "argExplanation": "if there is a for/against argument, explain argument"
-}\`\`\`
-`,
+}\`\`\``,
         },
       ],
     };
 
-    console.log(JSON.stringify(tempPromptData, null, 2));
     setPromptData(tempPromptData);
-    console.log(OPENAIKEY);
-  }, []);
+  };
 
   const handleNextTurn = async (e) => {
     const userChoice = {
       role: "user",
       content: value,
     };
-
-    const tempPromptData = { ...promptData };
-    tempPromptData.messages.push(userChoice);
 
     const response = await fetch(`https://api.openai.com/v1/chat/completions`, {
       method: "POST",
@@ -93,32 +90,90 @@ Your response will STRICTLY follow this JSON structure, DO NO add anything else:
     });
 
     const responseJSON = await response.json();
-    tempPromptData.messages.push(responseJSON.choices[0].message);
+
+    const tempPromptData = { ...promptData };
+    tempPromptData.messages.push(userChoice);
+
+    const responseMessage = responseJSON.choices[0].message;
+    tempPromptData.messages.push(responseMessage);
 
     setPromptData(tempPromptData);
+    setLatestAI(
+      JSON.parse(
+        responseMessage.content.startsWith("```json")
+          ? responseMessage.content.slice(7, -3)
+          : responseMessage.content
+      )
+    );
     e.value = "";
   };
 
   return (
     <>
-      <pre>
-        <code>{JSON.stringify(promptData, null, 2)}</code>
-      </pre>
-      <input
-        type="text"
-        placeholder="Decision (type anything)"
-        onChange={(e) => setValue(e.target.value)}
-        onKeyDown={(e) => {
-          if (e.key == "Enter") {
-            handleEnter(e.target);
-          }
-        }}
-      />
-      <input
-        type="button"
-        value="&#8594;"
-        onClick={(e) => handleNextTurn(e.target.previousSibling)}
-      />
+      <div className="simulation">
+        <div className="simulation_messages">
+          {promptData.messages ? (
+            promptData.messages.slice(1).map((message, index) => {
+              const parsedMessage =
+                message.role == "assistant"
+                  ? JSON.parse(
+                      message.content.startsWith("```json")
+                        ? message.content.slice(7, -3)
+                        : message.content
+                    )
+                  : message.content;
+              return (
+                <Message
+                  key={index}
+                  role={message.role}
+                  message={parsedMessage}
+                />
+              );
+            })
+          ) : (
+            <>
+              <div>Choose products to import/export:</div>
+              <div className="simulation_setup">
+                <span>Imported Good:</span>
+                <input
+                  type="text"
+                  placeholder="Imported item"
+                  onChange={(e) => setImported(e.target.value)}
+                />
+                <br />
+                <span>Exported Good:</span>
+                <input
+                  type="text"
+                  placeholder="Exported item"
+                  onChange={(e) => setExported(e.target.value)}
+                />
+                <input type="button" value="Save" onClick={handleSetup} />
+              </div>
+            </>
+          )}
+        </div>
+        <div className="simulation_game_state">{latestAI.gameState}</div>
+      </div>
+      {promptData.messages && (
+        <div className="simulation_input">
+          <input
+            className="simulation_turn_input"
+            type="text"
+            placeholder="Decision (type anything)"
+            onChange={(e) => setValue(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key == "Enter") {
+                handleNextTurn(e.target);
+              }
+            }}
+          />
+          <input
+            type="button"
+            value="&#8594;"
+            onClick={(e) => handleNextTurn(e.target.previousSibling)}
+          />
+        </div>
+      )}
     </>
   );
 };

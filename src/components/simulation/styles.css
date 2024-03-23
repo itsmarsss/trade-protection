@@ -1,0 +1,34 @@
+.simulation {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.simulation>* {
+    flex: 1;
+}
+
+.simulation_messages {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.simulation_setup {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 20px;
+    margin-top: 10px;
+    background: var(--background-light);
+    border-radius: 10px;
+}
+
+.simulation_input {
+    display: flex;
+    gap: 5px;
+}
+
+.simulation_turn_input {
+    flex: 1;
+}
