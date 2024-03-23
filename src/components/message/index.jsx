@@ -26,6 +26,7 @@ const Message = ({ role, message }) => {
                   </span>
                 </div>
               </div>
+              <div className="simulation_game_state">{message.gameState}</div>
             </>
           ) : (
             <span>&gt; {message}</span>

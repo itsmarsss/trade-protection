@@ -1,3 +1,12 @@
+.message {
+    display: flex;
+    gap: 20px;
+}
+
+.message>* {
+    flex: 1;
+}
+
 .message_ai {
     display: flex;
     flex-direction: column;
@@ -19,7 +28,7 @@
     border-radius: 10px;
     border-top-left-radius: 0;
     font-size: 13px;
-    cursor: pointer;
+    cursor: zoom-in;
 }
 
 .message_ai_motivation>span {
