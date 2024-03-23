@@ -5,7 +5,7 @@
 }
 
 .simulation {
-    height: calc(100vh - 410px);
+    height: calc(100vh - 475px);
 }
 
 .simulation_messages {
@@ -21,6 +21,19 @@
     overflow-y: auto;
 }
 
+.simulation_messages:has(> .simulation_setup_cont) {
+    height: fit-content
+}
+
+.simulation_setup_cont {
+    transition: 200ms;
+}
+
+.simulation_setup_cont.flip {
+    transform: rotateX(45deg) translateX(20px);
+    opacity: 0;
+}
+
 .simulation_setup {
     display: flex;
     flex-direction: column;
@@ -31,9 +44,42 @@
     border-radius: 10px;
 }
 
+.processing,
+.error {
+    margin: 20px;
+    padding: 10px;
+    border-radius: 20px;
+    text-align: center;
+    background: var(--background-light);
+}
+
+.processing:after {
+    content: "";
+    animation: 2000ms infinite buffer;
+}
+
+@keyframes buffer {
+    0% {
+        content: "Processing";
+    }
+
+    33% {
+        content: "Processing.";
+    }
+
+    66% {
+        content: "Processing..";
+    }
+
+    100% {
+        content: "Processing...";
+    }
+}
+
 .simulation_input {
     display: flex;
     gap: 5px;
+
 }
 
 .simulation_turn_input {

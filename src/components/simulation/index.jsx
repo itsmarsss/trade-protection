@@ -9,15 +9,22 @@ const Simulation = () => {
   const [exported, setExported] = useState("");
   const [promptData, setPromptData] = useState({});
   const [value, setValue] = useState("");
+  const [buffering, setBuffering] = useState(false);
+  const [error, setError] = useState(false);
 
+  const setUpRef = useRef(null);
   const chatRef = useRef(null);
+  const inputRef = useRef(null);
 
   const handleSetup = () => {
-    const tempPromptData = {
-      messages: [
-        {
-          role: "system",
-          content: `You, AI, will act as a country engaging in trade negotiations with the user, USER, representing another country. There are only 2 products: ${imported}, which AI exports to USER's country, and ${exported}, which AI imports from USER's country. Both countries have the option to impose tariffs or quotas on products or subsidize their own firms. They may also invest in their firms to increase output and decrease prices. This will be a turn-based game where USER makes the initial decision, and AI will respond with the consequences of USER's decision while also making a choice for AI's country.
+    setUpRef.current.classList.add("flip");
+
+    setTimeout(() => {
+      const tempPromptData = {
+        messages: [
+          {
+            role: "system",
+            content: `You, AI, will act as a country engaging in trade negotiations with the user, USER, representing another country. There are only 2 products: ${imported}, which AI exports to USER's country, and ${exported}, which AI imports from USER's country. Both countries have the option to impose tariffs or quotas on products or subsidize their own firms. They may also invest in their firms to increase output and decrease prices. This will be a turn-based game where USER makes the initial decision, and AI will respond with the consequences of USER's decision while also making a choice for AI's country.
 
 You will be talking DIRECTLY to the USER, you will STRICTLY use "you" instead of "USER" and "I" instead of "AI".
 
@@ -62,18 +69,24 @@ Your response will STRICTLY follow this JSON structure, DO NO add anything else:
 "argument": "if there is a for/against argument, put argument here",
 "argExplanation": "if there is a for/against argument, explain argument"
 }\`\`\``,
-        },
-      ],
-    };
+          },
+        ],
+      };
 
-    setPromptData(tempPromptData);
+      setPromptData(tempPromptData);
+    }, 200);
   };
 
   const handleNextTurn = async (e) => {
+    setBuffering(true);
+
     const userChoice = {
       role: "user",
       content: value,
     };
+
+    const tempPromptData = { ...promptData };
+    tempPromptData.messages.push(userChoice);
 
     const response = await fetch(`https://api.openai.com/v1/chat/completions`, {
       method: "POST",
@@ -83,7 +96,7 @@ Your response will STRICTLY follow this JSON structure, DO NO add anything else:
       },
       body: JSON.stringify({
         model: "gpt-3.5-turbo",
-        ...promptData,
+        ...tempPromptData,
         temperature: 0.7,
         max_tokens: 256,
         top_p: 1,
@@ -94,15 +107,35 @@ Your response will STRICTLY follow this JSON structure, DO NO add anything else:
 
     const responseJSON = await response.json();
 
-    const tempPromptData = { ...promptData };
-    tempPromptData.messages.push(userChoice);
-
     const responseMessage = responseJSON.choices[0].message;
     tempPromptData.messages.push(responseMessage);
 
     setPromptData(tempPromptData);
 
     e.value = "";
+    setBuffering(false);
+  };
+
+  const handleRestart = () => {
+    setPromptData({});
+    setError(false);
+  };
+
+  const parseJSON = (messageContent) => {
+    try {
+      return JSON.parse(
+        messageContent.startsWith("```json")
+          ? messageContent.slice(7, -3)
+          : messageContent
+      );
+    } catch (e) {
+      setError(true);
+      return {
+        gameState: "Error.",
+        oppDecision: "Error.",
+        oppMotivation: "Error.",
+      };
+    }
   };
 
   useEffect(() => {
@@ -110,7 +143,10 @@ Your response will STRICTLY follow this JSON structure, DO NO add anything else:
       top: chatRef.current.scrollHeight,
       behavior: "smooth",
     });
-  }, [promptData]);
+    if (!buffering) {
+      inputRef.current.focus();
+    }
+  }, [promptData, buffering, error]);
 
   return (
     <>
@@ -118,31 +154,32 @@ Your response will STRICTLY follow this JSON structure, DO NO add anything else:
       <div className="simulation">
         <div className="simulation_messages" ref={chatRef}>
           {promptData.messages ? (
-            promptData.messages.slice(1).map((message, index) => {
-              const parsedMessage =
-                message.role == "assistant"
-                  ? JSON.parse(
-                      message.content.startsWith("```json")
-                        ? message.content.slice(7, -3)
-                        : message.content
-                    )
-                  : message.content;
-              return (
-                <Message
-                  key={index}
-                  role={message.role}
-                  message={parsedMessage}
-                />
-              );
-            })
+            promptData.messages.length == 1 ? (
+              "Start simulation by making a decision below."
+            ) : (
+              promptData.messages.slice(1).map((message, index) => {
+                const parsedMessage =
+                  message.role == "assistant"
+                    ? parseJSON(message.content)
+                    : message.content;
+                return (
+                  <Message
+                    key={index}
+                    role={message.role}
+                    message={parsedMessage}
+                  />
+                );
+              })
+            )
           ) : (
-            <>
+            <div className="simulation_setup_cont slide" ref={setUpRef}>
               <div>Choose products to import/export:</div>
               <div className="simulation_setup">
                 <span>Imported Good:</span>
                 <input
                   type="text"
                   placeholder="Imported item"
+                  value={imported}
                   onChange={(e) => setImported(e.target.value)}
                 />
                 <br />
@@ -150,17 +187,23 @@ Your response will STRICTLY follow this JSON structure, DO NO add anything else:
                 <input
                   type="text"
                   placeholder="Exported item"
+                  value={exported}
                   onChange={(e) => setExported(e.target.value)}
                 />
                 <input type="button" value="Save" onClick={handleSetup} />
               </div>
-            </>
+            </div>
+          )}
+          {buffering && <span className="processing"></span>}
+          {error && (
+            <span className="error">Error Occured; restart simulation.</span>
           )}
         </div>
       </div>
       {promptData.messages && (
-        <div className="simulation_input">
+        <div className="simulation_input slide">
           <input
+            ref={inputRef}
             className="simulation_turn_input"
             type="text"
             placeholder="Decision (type anything)"
@@ -170,11 +213,19 @@ Your response will STRICTLY follow this JSON structure, DO NO add anything else:
                 handleNextTurn(e.target);
               }
             }}
+            disabled={buffering}
           />
           <input
             type="button"
             value="&#8594;"
             onClick={(e) => handleNextTurn(e.target.previousSibling)}
+            disabled={buffering}
+          />
+          <input
+            type="button"
+            value="&#8634;"
+            onClick={handleRestart}
+            disabled={buffering}
           />
         </div>
       )}

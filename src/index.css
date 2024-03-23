@@ -44,6 +44,11 @@ input[type="text"] {
   cursor: text;
 }
 
+input:disabled {
+  color: var(--background-light);
+  cursor: not-allowed;
+}
+
 select,
 input {
   border-radius: 8px;
