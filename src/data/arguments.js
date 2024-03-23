@@ -283,171 +283,167 @@ export const scenarios = [
   {
     answer: "Protection of infant (sunrise) industries",
     scenarios: [
-      "A country implements tariffs to shield its emerging technology sector from foreign competition.",
-      "Government subsidies are provided to support the growth of newly established industries in a nation.",
-      "Trade regulations are enacted to prevent foreign companies from flooding the market and stifling domestic startups.",
-      "Special economic zones are established to provide incentives for companies in nascent industries to flourish.",
-      "Investment in research and development initiatives is increased to foster the growth of sunrise industries.",
-    ],
-  },
-  {
+      "A country imposes tariffs on imported solar panels to protect its domestic solar industry, allowing local companies to grow and compete globally in the renewable energy market.",
+      "Government provides subsidies to start-up biotechnology firms to protect them from competition, aiming to nurture a thriving biotech sector for future economic growth and innovation.",
+      "In order to protect its emerging electric vehicle industry, a nation imposes restrictions on the import of foreign-made electric cars, encouraging domestic production and technology development.",
+      "To foster a competitive aerospace industry, a government implements trade policies that shield domestic aircraft manufacturers from foreign competition during the initial stages of development and production.",
+      "In efforts to support its nascent software industry, a country enforces regulations that limit the importation of foreign software, providing local developers with the opportunity to establish themselves in the market."
+    ]
+  }
+  , {
     answer: "National security",
     scenarios: [
-      "Stricter border controls are implemented to safeguard against potential terrorist threats.",
-      "Government agencies collaborate to counter cyberattacks and protect critical infrastructure.",
-      "Military spending is increased to ensure the nation's defense capabilities remain robust.",
-      "Diplomatic alliances are formed to enhance collective security in the face of geopolitical challenges.",
-      "Surveillance measures are intensified to mitigate risks to national sovereignty and territorial integrity.",
-    ],
-  },
-  {
+      "Due to national security concerns, a country restricts the import of certain critical technologies that could be exploited by adversaries for espionage or sabotage.",
+      "To protect sensitive military technologies, a nation imposes export controls on defense equipment and components, ensuring they do not fall into the hands of potential adversaries.",
+      "In response to cybersecurity threats, a government enforces regulations requiring all imported electronic devices to meet stringent security standards, safeguarding critical infrastructure from cyber attacks.",
+      "A country implements trade restrictions on imports of food products from specific regions known for poor safety standards to prevent potential contamination that could jeopardize public health and national security.",
+      "In light of geopolitical tensions, a nation imposes tariffs on imports of rare earth minerals, essential for advanced electronics manufacturing, to reduce dependence on foreign suppliers and mitigate security risks."
+    ]
+  }, {
     answer: "Maintenance of health and safety",
     scenarios: [
-      "Stringent regulations are imposed on food processing facilities to uphold product safety standards.",
-      "Public health campaigns are launched to promote vaccination and disease prevention.",
-      "Workplace safety inspections are conducted regularly to reduce the risk of accidents and injuries.",
-      "Environmental pollution controls are enforced to safeguard air and water quality.",
-      "Emergency response protocols are implemented to ensure effective crisis management during health emergencies.",
-    ],
-  },
-  {
+      "To ensure consumer safety, a country enforces strict regulations on imported pharmaceuticals, requiring them to meet stringent quality standards before entering the market.",
+      "In response to health concerns, a government imposes tariffs on imported food products that do not meet its established safety regulations, protecting citizens from potential hazards.",
+      "A nation implements trade barriers on toys manufactured in countries with lax safety standards, aiming to prevent the importation of products containing harmful substances such as lead or phthalates.",
+      "To protect workers' health, a country restricts imports of textiles produced in factories with poor working conditions and inadequate safety measures, promoting ethical sourcing practices.",
+      "In efforts to combat environmental pollution, a government imposes tariffs on imported goods manufactured using processes that pose significant health risks to workers and consumers."
+    ]
+  }
+  , {
     answer: "Environmental standard",
     scenarios: [
-      "Renewable energy incentives are introduced to encourage the adoption of clean energy technologies.",
-      "Protected areas are designated to preserve biodiversity and wildlife habitats.",
-      "Emission trading schemes are implemented to reduce greenhouse gas emissions.",
-      "Waste management policies are enacted to promote recycling and minimize landfill waste.",
-      "Environmental impact assessments are conducted for proposed development projects to mitigate ecological damage.",
-    ],
-  },
-  {
+      "A country imposes tariffs on imports of goods produced in countries with lax environmental regulations, incentivizing consumers to choose products manufactured using environmentally friendly processes.",
+      "To reduce carbon emissions, a government imposes a carbon tax on imported goods based on their carbon footprint, encouraging domestic production and consumption of greener alternatives.",
+      "In order to protect endangered species, a nation prohibits the importation of products derived from wildlife poaching or illegal logging, promoting conservation efforts globally.",
+      "To address deforestation, a country implements trade restrictions on timber imports from regions with unsustainable logging practices, promoting sustainable forestry management.",
+      "A government enforces regulations requiring imported electronics to meet energy efficiency standards, reducing energy consumption and environmental impact associated with electronic waste."
+    ]
+  }
+  , {
     answer: "Anti-dumping",
     scenarios: [
-      "Import tariffs are imposed on foreign goods to counteract unfair trade practices.",
-      "Trade agreements include provisions to prevent the dumping of subsidized products into domestic markets.",
-      "Trade remedies such as countervailing duties are levied on imported goods sold below fair market value.",
-      "Investigations are conducted to assess the impact of dumped imports on domestic industries.",
-      "Export subsidies are reduced to comply with international trade rules and discourage dumping behavior.",
-    ],
-  },
-  {
+      "A country imposes tariffs on steel imports from a foreign nation accused of dumping steel below market price, protecting its domestic steel industry from unfair competition.",
+      "In response to allegations of dumping, a government initiates anti-dumping investigations into imported textiles, imposing punitive tariffs on products found to be sold below fair market value.",
+      "To safeguard domestic producers, a nation imposes tariffs on imported agricultural products suspected of being dumped, ensuring fair competition and preventing market distortion.",
+      "A country imposes anti-dumping measures on imported electronic goods after finding evidence of predatory pricing practices by foreign manufacturers, protecting local electronics industry.",
+      "In efforts to support its domestic automotive industry, a government imposes anti-dumping duties on imported vehicles sold at artificially low prices, maintaining fair competition."
+    ]
+  }, {
     answer: "Unfair competition",
     scenarios: [
-      "Laws are enacted to prohibit predatory pricing and monopolistic practices.",
-      "Trade agreements include clauses to promote fair competition and prevent market manipulation.",
-      "Regulatory authorities enforce antitrust laws to ensure a level playing field for all businesses.",
-      "Market surveillance measures are implemented to detect and deter unfair trade practices.",
-      "Consumer protection laws are strengthened to safeguard against deceptive advertising and unfair business practices.",
-    ],
-  },
-  {
+      "A country implements trade barriers against imported goods produced using child labor or forced labor, aiming to level the playing field and promote ethical business practices.",
+      "In response to unfair trade practices, a government imposes tariffs on imported textiles produced in factories with exploitative labor conditions, protecting local textile workers.",
+      "To combat unfair competition, a nation enforces regulations requiring imported electronics to comply with labor standards and workplace safety regulations, ensuring fair treatment of workers.",
+      "A country imposes trade sanctions on imports of goods produced by companies engaging in corrupt practices, fostering a business environment based on transparency and integrity.",
+      "In efforts to prevent intellectual property theft, a government imposes tariffs on imported goods suspected of infringing patents or trademarks, protecting the interests of domestic innovators."
+    ]
+  }
+  , {
     answer: "Balance-of-payments correction",
     scenarios: [
-      "Exchange rate adjustments are made to address trade imbalances and stabilize the economy.",
-      "International borrowing is utilized to finance deficits and alleviate pressure on the balance of payments.",
-      "Export promotion initiatives are launched to boost foreign exchange earnings and improve trade performance.",
-      "Import restrictions are imposed to conserve foreign exchange reserves and reduce import dependency.",
-      "Fiscal austerity measures are implemented to reduce government spending and narrow the current account deficit.",
-    ],
-  },
-  {
+      "To reduce trade deficit, a country imposes restrictions on imports of luxury goods, encouraging domestic consumption of domestically produced goods and services.",
+      "In response to a sharp decline in foreign reserves, a government imposes temporary import controls to conserve foreign currency and stabilize the exchange rate.",
+      "A nation implements export subsidies to boost overseas sales and earn foreign exchange, addressing imbalances in the balance of payments.",
+      "In efforts to improve trade balance, a country devalues its currency to make exports more competitive in international markets, stimulating export-led growth.",
+      "To alleviate pressure on the balance of payments, a government imposes quotas on imports of non-essential goods, prioritizing the allocation of foreign exchange for essential imports."
+    ]
+  }, {
     answer: "Sources of government revenue",
     scenarios: [
-      "Tax reforms are introduced to broaden the tax base and increase government revenue.",
-      "Privatization initiatives are undertaken to generate income through the sale of state-owned assets.",
-      "User fees are imposed for government services to supplement revenue streams.",
-      "Customs duties are increased on imported goods to boost revenue collection.",
-      "Revenue-sharing agreements are negotiated with resource-extracting industries to secure government income.",
-    ],
-  },
-  {
+      "A country imposes tariffs on imported luxury goods to generate revenue for public expenditure, funding social welfare programs and infrastructure development.",
+      "In response to budgetary constraints, a government increases customs duties on imported electronics, bolstering government revenue without raising taxes on citizens.",
+      "To diversify revenue sources, a nation introduces value-added tax (VAT) on imported goods, contributing to overall tax revenue and reducing dependence on income tax.",
+      "A country auctions import licenses for certain goods, generating revenue for the government while also regulating the quantity of imports, ensuring a steady flow of income and controlling the influx of foreign goods.",
+      "In efforts to fund environmental conservation projects, a government imposes a carbon tax on imported fossil fuels, generating revenue while discouraging carbon-intensive consumption patterns."
+    ]
+  }, {
     answer: "Protection of jobs",
     scenarios: [
-      "Import quotas are imposed to limit foreign competition and preserve domestic employment.",
-      "Labor market regulations are strengthened to protect workers' rights and prevent job displacement.",
-      "Job training programs are implemented to enhance workforce skills and promote employment stability.",
-      "Subsidies are provided to struggling industries to prevent layoffs and maintain job levels.",
-      "Trade agreements include provisions to safeguard labor standards and prevent job outsourcing.",
-    ],
-  },
-  {
+      "To safeguard domestic employment, a country imposes quotas on imported textiles, ensuring that a certain percentage of textiles consumed domestically are produced domestically, thus preserving jobs in the textile industry.",
+      "In response to rising unemployment in the manufacturing sector, a government imposes tariffs on imported goods, encouraging consumers to buy domestically produced goods and supporting local employment.",
+      "A nation implements subsidies for domestic industries facing international competition, enabling them to maintain competitive prices and preserve jobs in the face of foreign competition.",
+      "To protect jobs in the agricultural sector, a country imposes restrictions on the import of agricultural products during harvest seasons, ensuring local farmers have a market for their produce.",
+      "In efforts to prevent job losses in the steel industry, a government imposes tariffs on imported steel, creating a level playing field for domestic producers and safeguarding jobs."
+    ]
+  }, {
     answer: "Economically least developed country (ELDC) diversification",
     scenarios: [
-      "Foreign aid is allocated to support economic diversification initiatives in less developed countries.",
-      "Infrastructure investments are made to create new economic opportunities in rural areas.",
-      "Trade preferences are granted to encourage export diversification and reduce dependence on primary commodities.",
-      "Capacity-building programs are implemented to develop key sectors and enhance competitiveness.",
-      "Microfinance schemes are established to promote entrepreneurship and empower marginalized communities.",
-    ],
-  },
-  {
+      "To promote economic diversification in an ELDC, a country implements trade policies that provide preferential access to its markets for non-traditional exports, encouraging the development of new industries.",
+      "In efforts to reduce dependence on a few primary commodities, a government provides subsidies and incentives for the development of value-added industries, aiming to diversify the economy and create employment opportunities.",
+      "A nation establishes special economic zones with tax breaks and streamlined regulations to attract foreign investment and stimulate the growth of diverse industries in economically least developed regions.",
+      "To promote agricultural diversification, a country invests in research and development to introduce new crop varieties suited to local conditions, reducing reliance on traditional crops and expanding export opportunities.",
+      "In efforts to diversify its tourism sector, an ELDC invests in infrastructure development and marketing campaigns to attract visitors to lesser-known destinations, reducing dependence on a few popular tourist spots."
+    ]
+  }
+  , {
     answer: "Misallocation of resources",
     scenarios: [
-      "Government subsidies are directed towards inefficient industries with little economic viability.",
-      "Public investments are misallocated due to corruption and lack of transparency in procurement processes.",
-      "Resource-intensive projects are prioritized over sustainable development initiatives.",
-      "Regulatory barriers hinder the reallocation of resources to more productive sectors of the economy.",
-      "Inadequate infrastructure leads to inefficiencies in resource utilization and distribution.",
-    ],
-  },
-  {
+      "Due to trade restrictions favoring certain industries, resources are diverted away from more efficient uses, leading to inefficiencies and lower overall economic output.",
+      "Protectionist policies prevent the reallocation of resources from declining industries to emerging sectors with higher growth potential, hindering economic dynamism and innovation.",
+      "Subsidies provided to shield inefficient domestic industries from foreign competition perpetuate resource misallocation by propping up uncompetitive businesses at the expense of more efficient ones.",
+      "Trade barriers artificially inflate prices of imported inputs, leading to higher production costs and inefficient resource allocation across sectors reliant on those inputs.",
+      "Protectionist measures aimed at preserving jobs in declining industries lead to overcapacity and redundant investment, exacerbating resource misallocation and hindering structural transformation."
+    ]
+  }
+  , {
     answer: "Retaliation",
     scenarios: [
-      "Trade sanctions are imposed in response to unfair trade practices by another country.",
-      "Tariffs are raised on specific imports to counteract discriminatory trade policies by trading partners.",
-      "Diplomatic relations are strained due to retaliatory measures taken in response to political actions.",
-      "Export bans are implemented on strategic goods in retaliation for similar actions taken by other nations.",
-      "Trade negotiations stall as countries engage in tit-for-tat tariff increases in retaliation for perceived trade injustices.",
-    ],
-  },
-  {
+      "A country imposes tariffs on imports from a trading partner in retaliation for that partner's imposition of tariffs on its exports, escalating trade tensions and potentially leading to a trade war.",
+      "In response to trade sanctions imposed by another nation, a government restricts the importation of key agricultural products, exerting pressure on the exporting country to negotiate favorable terms.",
+      "A nation imposes export quotas on critical raw materials in retaliation for another country's unfair trade practices, disrupting global supply chains and causing price volatility in commodity markets.",
+      "In response to discriminatory trade policies, a government imposes non-tariff barriers on imports from the offending country, such as stringent quality standards or inspection requirements, impacting bilateral trade relations.",
+      "A country initiates anti-dumping investigations against imports from a trading partner suspected of engaging in unfair trade practices, signaling its readiness to retaliate against perceived injustices in trade."
+    ]
+  }
+  , {
     answer: "Increased costs",
     scenarios: [
-      "Rising raw material prices lead to increased production costs for manufacturing companies.",
-      "Energy price spikes result in higher operating expenses for businesses reliant on electricity and fuel.",
-      "Supply chain disruptions cause transportation costs to soar for import-dependent industries.",
-      "New regulatory requirements necessitate investments in compliance measures, driving up costs for affected businesses.",
-      "Escalating labor costs due to wage hikes or labor shortages contribute to overall cost inflation across industries.",
-    ],
-  },
-  {
+      "Tariffs imposed on imported steel raise production costs for downstream industries reliant on steel inputs, leading to higher prices for consumer goods such as automobiles and appliances.",
+      "Trade restrictions on imported electronics lead to higher costs for businesses purchasing technology products, reducing profitability and potentially hindering investment in innovation and productivity-enhancing technologies.",
+      "Import quotas on agricultural products result in scarcity and higher prices for consumers, particularly impacting low-income households reliant on affordable food staples.",
+      "Non-tariff barriers, such as complex customs procedures and product testing requirements, increase transaction costs for exporters, reducing their competitiveness in international markets.",
+      "Protectionist measures, such as subsidies for domestic industries, are funded through taxes or government borrowing, imposing additional costs on taxpayers and diverting resources away from more productive uses."
+    ]
+  }
+  , {
     answer: "Higher prices",
     scenarios: [
-      "Supply shortages and increased demand lead to price hikes for essential goods such as food and fuel.",
-      "Currency devaluation results in higher import prices for goods and services sourced from foreign markets.",
-      "Tariff increases on imported goods raise retail prices for consumers purchasing foreign-made products.",
-      "Production cost escalations are passed on to consumers through higher retail prices for manufactured goods.",
-      "Market monopolies exert pricing power, allowing companies to raise prices without fear of competitive pressure.",
-    ],
-  },
-  {
+      "Tariffs imposed on imported automobiles lead to higher prices for consumers, reducing affordability and dampening consumer spending on big-ticket items.",
+      "Trade restrictions on imported consumer electronics result in higher prices for gadgets and devices, limiting access to technology for lower-income consumers.",
+      "Import quotas on textiles lead to scarcity and higher prices for clothing, particularly impacting budget-conscious consumers who rely on affordable apparel.",
+      "Non-tariff barriers, such as stringent safety regulations, increase compliance costs for exporters, ultimately passed on to consumers in the form of higher prices for imported goods.",
+      "Protectionist measures aimed at supporting domestic industries lead to reduced competition, allowing domestic producers to raise prices without fear of losing market share to cheaper imports."
+    ]
+  }
+  , {
     answer: "Less choice",
     scenarios: [
-      "Market consolidation reduces competition, resulting in fewer options for consumers.",
-      "Product recalls lead to temporary shortages of certain items, limiting choices for consumers.",
-      "Trade barriers such as tariffs and quotas restrict the variety of imported goods available in the domestic market.",
-      "Retail store closures decrease the number of available brands and products in shopping malls and districts.",
-      "Discontinuation of unpopular products by manufacturers reduces consumer choices in specific product categories.",
-    ],
-  },
-  {
+      "Import quotas on foreign cars limit consumer choice, restricting access to a diverse range of vehicle models and features available in the global market.",
+      "Trade restrictions on imported electronics result in a narrower selection of technology products available to consumers, reducing options for consumers seeking specific features or brands.",
+      "Tariffs imposed on imported clothing reduce the variety of apparel available to consumers, limiting options for individuals with diverse preferences and style preferences.",
+      "Non-tariff barriers, such as strict labeling requirements, deter importers from offering a wide range of products in the domestic market, leading to less variety for consumers.",
+      "Protectionist measures favoring domestic producers lead to the dominance of a few large firms in the market, limiting competition and choice for consumers."
+    ]
+  }
+  , {
     answer: "Lack of incentive for domestic firms to become more efficient",
     scenarios: [
-      "Protectionist policies shield domestic firms from foreign competition, reducing the pressure to innovate and improve efficiency.",
-      "Government subsidies provide financial support to struggling industries without requiring efficiency improvements in return.",
-      "Monopolistic market structures eliminate competitive pressures, reducing the motivation for firms to invest in efficiency enhancements.",
-      "Low interest rates discourage capital investment in productivity-enhancing technologies and equipment.",
-      "Insufficient enforcement of intellectual property rights discourages innovation and hinders technological advancements.",
-    ],
-  },
+      "Protectionist policies shield domestic firms from foreign competition, reducing the pressure to innovate and improve efficiency to remain competitive in the global market.",
+      "Subsidies provided to domestic industries artificially lower production costs, diminishing the motivation for firms to adopt cost-saving technologies and streamline operations.",
+      "Import quotas limit the exposure of domestic firms to international competition, leading to complacency and a reluctance to invest in research and development or improve product quality.",
+      "Tariffs on imported goods artificially inflate prices, allowing domestic firms to maintain higher prices without improving efficiency or reducing production costs.",
+      "Non-tariff barriers, such as complex regulatory requirements, create barriers to entry for foreign competitors, reducing competitive pressure on domestic firms to innovate and become more efficient."
+    ]
+  }
+  ,
   {
     answer: "Reduced export competitiveness",
     scenarios: [
-      "Currency appreciation makes exports more expensive for foreign buyers, eroding competitiveness in global markets.",
-      "Trade barriers such as tariffs and quotas imposed by trading partners disadvantage domestic exporters relative to foreign competitors.",
-      "Deterioration of infrastructure and logistics networks increases transportation costs for exporters, reducing price competitiveness.",
-      "Subsidies provided to foreign competitors give them a cost advantage over domestic exporters in international markets.",
-      "Differences in regulatory standards between countries create compliance burdens that put domestic exporters at a disadvantage.",
-    ],
-  },
+      "Trade restrictions imposed by trading partners in response to protectionist measures decrease demand for domestically produced goods, reducing export opportunities for domestic firms.",
+      "Tariffs imposed by other countries on imports from the protectionist nation decrease the competitiveness of domestic goods in international markets, leading to a decline in export sales.",
+      "Non-tariff barriers, such as stringent quality standards or import quotas, imposed by trading partners reduce access to foreign markets for domestically produced goods, limiting export competitiveness.",
+      "Retaliation by trading partners against protectionist measures imposed by a country results in tariffs or trade barriers on its exports, diminishing export competitiveness in retaliation.",
+      "Protectionist measures, such as export subsidies or tax breaks for domestic industries, distort international trade and undermine the competitiveness of domestic exports by artificially lowering their prices."
+    ]
+  }
 ];
