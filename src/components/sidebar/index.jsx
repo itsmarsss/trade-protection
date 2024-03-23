@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
 import "./styles.css";
 
-const SideBar = ({ title, options, fixed, selected, switchSelected }) => {
+const SideBar = ({ title, options, selected, switchSelected }) => {
   const handleSelected = (index) => {
     switchSelected(index);
   };
@@ -13,8 +12,7 @@ const SideBar = ({ title, options, fixed, selected, switchSelected }) => {
         {options.map((option, index) => (
           <span
             className={
-              "sidebar_option" +
-              (fixed ? "" : index == selected ? " highlighted" : "")
+              "sidebar_option" + (index == selected ? " highlighted" : "")
             }
             onClick={() => handleSelected(index)}
             key={index}

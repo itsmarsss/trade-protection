@@ -114,6 +114,7 @@ Your response will STRICTLY follow this JSON structure, DO NO add anything else:
 
   return (
     <>
+      <div className="simulation_title">Simulation</div>
       <div className="simulation">
         <div className="simulation_messages" ref={chatRef}>
           {promptData.messages ? (

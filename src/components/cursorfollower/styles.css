@@ -5,9 +5,8 @@
     width: 20px;
     height: 20px;
     border-radius: 100%;
-    background-color: var(--accent);
+    background-color: var(--accent-transparent);
     opacity: 0;
-    z-index: 10000;
+    z-index: 100;
     pointer-events: none;
-    filter: blur(3px);
 }
