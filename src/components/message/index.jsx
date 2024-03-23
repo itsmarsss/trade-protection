@@ -9,20 +9,20 @@ const Message = ({ role, message }) => {
             <>
               <div className="message_ai">
                 <span className="message_ai_decision">
-                  {message.oppDecision}
+                  {message.oppDecision || <i>No Data</i>}
                 </span>
                 <div className="message_ai_motivation">
                   <div className="tooltip">
                     <b>
                       <u>Motivation:</u>
                     </b>{" "}
-                    {message.oppMotivation}
+                    {message.oppMotivation || <i>No Data</i>}
                   </div>
                   <span>
                     <b>
                       <u>Motivation:</u>
                     </b>{" "}
-                    {message.oppMotivation}
+                    {message.oppMotivation || <i>No Data</i>}
                   </span>
                 </div>
               </div>

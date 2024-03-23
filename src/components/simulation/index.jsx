@@ -144,7 +144,11 @@ Your response will STRICTLY follow this JSON structure, DO NO add anything else:
       behavior: "smooth",
     });
     if (!buffering) {
-      inputRef.current.focus();
+      if (inputRef) {
+        if (inputRef.current) {
+          inputRef.current.focus();
+        }
+      }
     }
   }, [promptData, buffering, error]);
 

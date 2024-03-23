@@ -40,6 +40,10 @@ h1 {
   line-height: 1.1;
 }
 
+i {
+  font-family: sans-serif;
+}
+
 input[type="text"] {
   cursor: text;
 }

@@ -207,25 +207,7 @@ const Test = ({ mode }) => {
       <div className="test_title">
         {mode == 0 ? "Memory" : mode == 1 ? "Identify" : "Case Study"}
       </div>
-      {mode == 1 ? (
-        <>
-          <div className="test_scenario">
-            <span>
-              <b>Argument for scenario:</b> {scenario}
-            </span>
-            <br />
-            <br />
-            <span>
-              <b>Answer for scenario:</b>{" "}
-              <span
-                className={"test_scenario_answer" + (win ? " correct" : "")}
-              >
-                {answer}
-              </span>
-            </span>
-          </div>
-        </>
-      ) : mode == 1 ? (
+      {mode == 0 ? (
         <>
           <div className="test_arguments">
             <div className="test_arguments_for">
@@ -254,6 +236,24 @@ const Test = ({ mode }) => {
                 ))}
               </ul>
             </div>
+          </div>
+        </>
+      ) : mode == 1 ? (
+        <>
+          <div className="test_scenario">
+            <span>
+              <b>Argument for scenario:</b> {scenario}
+            </span>
+            <br />
+            <br />
+            <span>
+              <b>Answer for scenario:</b>{" "}
+              <span
+                className={"test_scenario_answer" + (win ? " correct" : "")}
+              >
+                {answer}
+              </span>
+            </span>
           </div>
         </>
       ) : (
