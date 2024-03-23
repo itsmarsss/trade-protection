@@ -88,6 +88,26 @@ const Test = ({ mode }) => {
     }
   };
 
+  const handleQuestion = () => {
+    if (win) {
+      return;
+    }
+    setWin(true);
+    setArgs([]);
+    const updatedHistory = [
+      ...history,
+      {
+        mode: mode == 0 ? "Memory" : "Identify",
+        second: second,
+        correct: correct,
+        attempt: attempt,
+      },
+    ];
+    setHistory(updatedHistory);
+    setWin(true);
+    clearInterval(timerIdRef.current);
+  };
+
   const startTimer = () => {
     timerIdRef.current = setInterval(() => {
       setSecond((second) => second + 1);
@@ -259,6 +279,12 @@ const Test = ({ mode }) => {
             type="button"
             value="&#8634;"
             onClick={handleReset}
+          />
+          <input
+            className="test_panel_question"
+            type="button"
+            value="?"
+            onClick={handleQuestion}
           />
         </div>
         <div className="test_panel_stats">
