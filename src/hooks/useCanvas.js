@@ -16,6 +16,8 @@ export function useCanvas(options) {
         const canvasObj = canvasRef.current;
         const ctx = canvasObj.getContext("2d");
 
+        options.height = document.body.scrollHeight * (options.width / document.body.scrollWidth);
+
         resizeCanvas(canvasObj, options.width, options.height);
         onDraw(ctx);
 
