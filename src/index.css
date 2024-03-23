@@ -4,6 +4,9 @@
   --background-light: #363636;
   --background-glass: #00000050;
 
+  --accent: #646cff;
+  --accent-transparent: #646cff99;
+
   font-family: "Oswald", Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -57,7 +60,7 @@ input {
 
 select:hover,
 input:hover {
-  outline: 1px solid #646cff;
+  outline: 1px solid var(--accent);
 }
 
 select:focus,
@@ -65,5 +68,5 @@ select:focus-visible,
 input:focus,
 input:focus-visible {
   border-color: var(--background);
-  outline: 2px solid #646cff;
+  outline: 2px solid var(--accent);
 }

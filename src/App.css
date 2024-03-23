@@ -5,21 +5,6 @@
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
 .content {
   --content-shift: 250px;
   position: relative;
@@ -33,6 +18,18 @@
 
 .slide {
   animation: 100ms linear slide_in;
+}
+
+#blob {
+  width: 50px;
+  height: 50px;
+  background-color: #ff7f50;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: 200ms ease-in-out;
 }
 
 ::-webkit-scrollbar {

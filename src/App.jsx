@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./App.css";
 import NavBar from "./components/navbar";
 import SideBar from "./components/sidebar";
@@ -6,6 +6,7 @@ import Train from "./components/train";
 import Test from "./components/test";
 import Simulation from "./components/simulation";
 import PageMap from "./components/pagemap";
+import CursorFollower from "./components/cursorfollower";
 
 const App = () => {
   const [tab, setTab] = useState(0);
@@ -105,6 +106,7 @@ const App = () => {
           )}
         </div>
         <PageMap container={contentRef} options={pageMapOptions} />
+        <CursorFollower />
       </div>
     </>
   );
