@@ -23,8 +23,13 @@
     margin-top: 5px;
 }
 
+.test_casestudy_arguments>ul>li {
+    position: relative;
+}
+
 .test_scenario_answer:after,
-.test_arguments>div>ul>li:after {
+.test_arguments>div>ul>li:after,
+.test_casestudy_arguments>ul>li:after {
     --shrink: 5px;
     content: "";
     position: absolute;
@@ -36,7 +41,8 @@
 }
 
 .test_scenario_answer.correct:after,
-.test_arguments>div>ul>li.correct:after {
+.test_arguments>div>ul>li.correct:after,
+.test_casestudy_arguments>ul>li.correct:after {
     transition: 500ms;
     transform: scaleY(0);
     transform-origin: bottom;
@@ -49,6 +55,13 @@
 
 .test_scenario_answer {
     position: relative;
+}
+
+.test_casestudy {
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .test_panel {

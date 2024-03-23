@@ -2,15 +2,22 @@ import "./styles.css";
 import History from "../history";
 import { useEffect, useRef, useState } from "react";
 import { forArgs, againstArgs, allArgs, scenarios } from "../../data/arguments";
+import { caseStudies } from "../../data/casestudies";
 
 const Test = ({ mode }) => {
   const [value, setValue] = useState("");
   const [scenario, setScenario] = useState("");
   const [answer, setAnswer] = useState("");
   const [win, setWin] = useState(false);
+
   const [scenarioAnswers, setScenarioAnswers] = useState([]);
   const [args, setArgs] = useState(allArgs);
   const [alts, setAlts] = useState(forArgs.concat(againstArgs));
+
+  const [event, setEvent] = useState("");
+  const [explanation, setExplanation] = useState("");
+  const [eventArguments, setEventArguments] = useState([]);
+
   const [correct, setCorrect] = useState(0);
   const [attempt, setAttempt] = useState(0.00001);
   const [second, setSecond] = useState(0);
@@ -70,7 +77,7 @@ const Test = ({ mode }) => {
     setWin(false);
     clearInterval(timerIdRef.current);
 
-    if (mode === 1) {
+    if (mode == 1) {
       startTimer();
       const policy = scenarios[Math.floor(Math.random() * scenarios.length)];
       setScenario(
@@ -78,13 +85,22 @@ const Test = ({ mode }) => {
       );
 
       for (let i = 0; i < alts.length; i++) {
-        if (alts[i].main === policy.answer) {
+        if (alts[i].main == policy.answer) {
           const updatedAlts = [...alts[i].alt];
           updatedAlts.push(alts[i].main);
           setAnswer(alts[i].main);
           setScenarioAnswers(updatedAlts);
         }
       }
+    } else if (mode == 2) {
+      startTimer();
+
+      const caseStudy =
+        caseStudies[Math.floor(Math.random() * caseStudies.length)];
+
+      setEvent(caseStudy.case);
+      setExplanation(caseStudy.explanation);
+      setEventArguments(caseStudy.arguments);
     }
   };
 
@@ -97,7 +113,7 @@ const Test = ({ mode }) => {
     const updatedHistory = [
       ...history,
       {
-        mode: mode == 0 ? "Memory" : "Identify",
+        mode: mode == 0 ? "Memory" : mode == 1 ? "Identify" : "Case Study",
         second: second,
         correct: correct,
         attempt: attempt,
@@ -132,7 +148,7 @@ const Test = ({ mode }) => {
       }
     };
 
-    if (mode === 0) {
+    if (mode == 0) {
       alts.forEach((alts) => {
         doSearch(value, alts.main, alts.main);
         alts.alt.forEach((alt) => {
@@ -149,7 +165,7 @@ const Test = ({ mode }) => {
 
         setCorrect(correct + 1);
 
-        if (updatedArgs.length === 0) {
+        if (updatedArgs.length == 0) {
           const updatedHistory = [
             ...history,
             {
@@ -166,10 +182,10 @@ const Test = ({ mode }) => {
         }
       }
 
-      if (attempt === 0.00001) {
+      if (attempt == 0.00001) {
         startTimer();
       }
-    } else {
+    } else if (mode == 1) {
       scenarioAnswers.forEach((answer) => {
         doSearch(value, answer, scenarioAnswers[scenarioAnswers.length - 1]);
       });
@@ -193,6 +209,22 @@ const Test = ({ mode }) => {
 
         clearInterval(timerIdRef.current);
       }
+    } else if (mode == 2) {
+      setCorrect(correct + 1);
+
+      const updatedHistory = [
+        ...history,
+        {
+          mode: "Case Study",
+          second: second,
+          correct: correct + 1,
+          attempt: attempt + 1,
+        },
+      ];
+      setHistory(updatedHistory);
+      setWin(true);
+
+      clearInterval(timerIdRef.current);
     }
 
     e.value = "";
@@ -258,8 +290,24 @@ const Test = ({ mode }) => {
         </>
       ) : (
         <>
-          <video></video>
-          <span></span>
+          <div className="test_casestudy">
+            <span className="test_casestudy_event">
+              <b>Case:</b> {event}
+            </span>
+            <span className="test_casestudy_explanation">
+              <b>Context:</b> {explanation}
+            </span>
+            <span className="test_casestudy_arguments">
+              <b>Possible Talking Points (reveal after you answer):</b>
+              <ul>
+                {eventArguments.map((eventArgument, index) => (
+                  <li key={index} className={win ? "correct" : ""}>
+                    {eventArgument}
+                  </li>
+                ))}
+              </ul>
+            </span>
+          </div>
         </>
       )}
       <div className="test_panel">
