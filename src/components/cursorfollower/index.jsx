@@ -48,5 +48,5 @@ export default function CursorFollower() {
       });
     });
   }, []);
-  return <div className="cursor_follower" ref={cursorRef}></div>;
+  return <cursor className="cursor_follower" ref={cursorRef}></cursor>;
 }

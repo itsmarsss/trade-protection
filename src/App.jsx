@@ -74,12 +74,12 @@ const App = () => {
   const pageMapOptions = {
     selector: {
       "h1,a": "#ffffffcc",
-      "h2,h3,h4,span,li": "#ffffff66",
+      "h2,h3,h4,span,li,cursor": "#ffffff66",
       "header,footer,section,article": "#ffffff11",
       div: "#ffffff11",
     },
     width: 100,
-    height: 300,
+    height: 100,
     background: "#0000000",
     drag: "#000000aa",
     viewport: "#00000066",
