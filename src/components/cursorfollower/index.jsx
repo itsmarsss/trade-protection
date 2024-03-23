@@ -21,7 +21,8 @@ export default function CursorFollower() {
         target.closest("input") ||
         target.closest(".baritem") ||
         target.closest(".sidebar_option") ||
-        target.closest(".pagemap");
+        target.closest(".pagemap") ||
+        target.closest(".tooltip");
       gsap.to(cursor, {
         x:
           x -
