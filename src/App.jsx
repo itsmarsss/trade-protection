@@ -73,10 +73,10 @@ const App = () => {
   const contentRef = React.createRef();
   const pageMapOptions = {
     selector: {
-      "h1,a": "#ffffffcc",
-      "h2,h3,h4,span,li,cursor": "#ffffff66",
-      "header,footer,section,article": "#ffffff11",
-      div: "#ffffff11",
+      "h1,a,.baritem,.sidebar_title,.test_title": "#ffffffcc",
+      "h2,h3,h4,span,li,cursor": "#ffffff99",
+      "header,footer,section,article,input": "#ffffff33",
+      div: "#ffffff05",
     },
     width: 100,
     height: 100,
