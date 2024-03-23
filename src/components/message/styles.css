@@ -1,6 +1,7 @@
 .message {
     display: flex;
     gap: 20px;
+    animation: 200ms linear message_entry_fadein;
 }
 
 .message>* {
@@ -18,17 +19,18 @@
 }
 
 .message_ai_motivation {
+    --message_ai_motivation_margin_left: 20px;
+    --message_ai_motivation_padding: 10px;
     position: relative;
     display: flex;
-    width: calc(100% - 50px);
+    width: calc(100% - var(--message_ai_motivation_margin_left) - 2*var(--message_ai_motivation_padding));
     height: 25px;
-    margin-left: 20px;
-    padding: 10px;
+    margin-left: var(--message_ai_motivation_margin_left);
+    padding: var(--message_ai_motivation_padding);
     background: var(--background-light);
     border-radius: 10px;
     border-top-left-radius: 0;
     font-size: 13px;
-    cursor: zoom-in;
 }
 
 .message_ai_motivation>span {
@@ -58,4 +60,14 @@
 .message_ai_motivation:hover>.tooltip {
     opacity: 1;
     height: auto;
+}
+
+@keyframes message_entry_fadein {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
