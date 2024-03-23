@@ -2,222 +2,122 @@ import { useEffect, useState } from "react";
 import "./styles.css";
 
 const Simulation = () => {
-  const protectionMap = {
-    0: "Free-trade",
-    1: "Tariff",
-    2: "Quota",
-    3: "Subsidy",
-  };
+  const OPENAIKEY = import.meta.env.VITE_OPENAIKEY;
 
-  const getMultiplier = (totalSubsidy) => {
-    totalSubsidy /= 10_000;
-    const multiplier =
-      (-10 / Math.sqrt(2 * Math.PI)) *
-        Math.pow(Math.E, (totalSubsidy * totalSubsidy) / -72) +
-      5;
+  const [promptData, setPromptData] = useState({});
+  const [value, setValue] = useState("");
 
-    return multiplier;
-  };
+  useEffect(() => {
+    const tempPromptData = {
+      messages: [
+        {
+          role: "system",
+          content: `
+You, AI, will act as a country engaging in trade negotiations with the user, USER, representing another country. There are only 2 products: Salmon, which AI exports to USER's country, and beef, which AI imports from USER's country. Both countries have the option to impose tariffs or quotas on products or subsidize their own firms. They may also invest in their firms to increase output and decrease prices. This will be a turn-based game where USER makes the initial decision, and AI will respond with the consequences of USER's decision while also making a choice for AI's country.
 
-  const PRICE = 10;
-  const QUANTITY = 10_000;
+You will be talking to the USER, so use "you" refering to USER.
 
-  const SUPPLY_M = 1 / 2_500;
-  const DEMAND_M = -1 / 2_500; // +20
+USER makes the first move.
 
-  const [userTurn, setUserTurn] = useState(true);
+Also, identify if any of the following for or against arguments for trade protection occurs. If any of them do, you can include that in your response, include a DIFFERENT argument or none at all each turn:
 
-  const [budget, setBudget] = useState(100_000);
-  const [domesticMultiplier, setDomesticMultiplier] = useState(1);
-  const [domesticSubsidy, setDomesticSubsidy] = useState(0);
-  const [domesticPrice, setDomesticPrice] = useState(PRICE);
-  const [domesticQuantity, setDomesticQuantity] = useState(QUANTITY);
+- "Protection of infant (sunrise) industries"
+- "National security"
+- "Maintenance of health and safety"
+- "Environmental standard"
+- "Anti-dumping"
+- "Unfair competition"
+- "Balance-of-payments correction"
+- "Sources of government revenue"
+- "Protection of jobs"
+- "Economically least developed country (ELDC) diversification"
+- "Misallocation of resources"
+- "Retaliation"
+- "Increased costs"
+- "Higher prices"
+- "Less choice"
+- "Lack of incentive for domestic firms to become more efficient"
+- "Reduced export competitiveness"
 
-  const [foreignMultiplier, setForeignMultiplier] = useState(1);
-  const [foreignSubsidy, setForeignSubsidy] = useState(0);
-  const [foreignPrice, setForeignPrice] = useState(PRICE);
-  const [foreignQuantity, setForeignQuantity] = useState(QUANTITY);
+As a country, you can artificially make some of these occur, make the game turbulent, be aggressive, and sometimes make poor decisions if necessary.
 
-  const [importQuantity, setImportQuantity] = useState(5_000);
-  const [exportQuantity, setExportQuantity] = useState(5_000);
+You will STRICTLY introduce turbulence to the game, and make it hectic by introducing events that will shift how the economy works.
 
-  const [domesticProtection, setDomesticProtection] = useState(0);
-  const [domesticProtectionValue, setDomesticProtectionValue] = useState(0);
+This game is meant to educate the player on the arguments presented above. Artificially cause those arguments from happening in the game.
 
-  const [foreignProtection, setForeignProtection] = useState(0);
-  const [foreignProtectionValue, setForeignProtectionValue] = useState(0);
-  const [foreignAggressionIndex, setForeignAggressionIndex] = useState(5);
+Your response will STRICTLY follow this JSON structure, DO NO add anything else:
 
-  //const [allData, setAllData] = useState([budget]);
+\`\`\`json
+{
+"gameState": "consequences of user country decision here",
+"oppDecision": "AI country decision",
+"oppMotivation": "AI country motivation for AI country decision",
+"hasArgument": true/false (for/against argument met),
+"argument": "if there is a for/against argument, put argument here",
+"argExplanation": "if there is a for/against argument, explain argument"
+}\`\`\`
+`,
+        },
+      ],
+    };
 
-  const [domesticProtectionBuffer, setDomesticProtectionBuffer] = useState(0);
-  const [domesticProtectionValueBuffer, setDomesticProtectionValueBuffer] =
-    useState(0);
-  const [subsidizeDomesticValueBuffer, setSubsidizeDomesticValueBuffer] =
-    useState(0);
+    console.log(JSON.stringify(tempPromptData, null, 2));
+    setPromptData(tempPromptData);
+    console.log(OPENAIKEY);
+  }, []);
 
-  const handleFreeTrade = (newDomesticPrice) => {
-    const newExportQuantity =
-      50000 - 2500 * newDomesticPrice - 2500 * newDomesticPrice;
+  const handleNextTurn = async (e) => {
+    const userChoice = {
+      role: "user",
+      content: value,
+    };
 
-    setExportQuantity(newExportQuantity);
-    console.log("ft");
-    return true;
-  };
-  const handleTariff = () => {
-    return true;
-  };
-  const handleQuota = () => {
-    console.log("q");
-    return true;
-  };
-  const handleSubsidy = () => {
-    console.log("s");
-    return true;
-  };
+    const tempPromptData = { ...promptData };
+    tempPromptData.messages.push(userChoice);
 
-  const handleProtectionMap = {
-    0: handleFreeTrade,
-    1: handleTariff,
-    2: handleQuota,
-    3: handleSubsidy,
-  };
+    const response = await fetch(`https://api.openai.com/v1/chat/completions`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${OPENAIKEY}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        model: "gpt-3.5-turbo",
+        ...promptData,
+        temperature: 0.7,
+        max_tokens: 256,
+        top_p: 1,
+        frequency_penalty: 0,
+        presence_penalty: 0,
+      }),
+    });
 
-  const handleNextFrame = () => {
-    setUserTurn(false);
+    const responseJSON = await response.json();
+    tempPromptData.messages.push(responseJSON.choices[0].message);
 
-    let expenses = subsidizeDomesticValueBuffer;
-    if (domesticProtectionBuffer == 3) {
-      expenses += domesticProtectionValueBuffer;
-    }
-    if (expenses > budget) {
-      console.log("Insufficient budget");
-      return;
-    }
-    setDomesticProtection(domesticProtectionBuffer);
-    setDomesticProtectionValue(domesticProtectionValueBuffer);
-
-    setBudget(budget - expenses);
-
-    const totalDomesticSubsidy = domesticSubsidy + subsidizeDomesticValueBuffer;
-    setDomesticSubsidy(totalDomesticSubsidy);
-
-    const newDomesticMultiplier = getMultiplier(totalDomesticSubsidy);
-    setDomesticMultiplier(newDomesticMultiplier);
-
-    const newDomesticPrice = PRICE / newDomesticMultiplier;
-    setDomesticPrice(newDomesticPrice);
-
-    const newDomesticQuantity = QUANTITY * newDomesticMultiplier;
-    setDomesticQuantity(newDomesticQuantity);
-
-    const isAble =
-      handleProtectionMap[domesticProtectionBuffer](newDomesticPrice);
+    setPromptData(tempPromptData);
+    e.value = "";
   };
 
   return (
     <>
-      <span>budget: {budget}</span>
-      <br />
-      <span>domesticMultiplier: {domesticMultiplier}</span>
-      <br />
-      <span>domesticSubsidy: {domesticSubsidy}</span>
-      <br />
-      <span>domesticPrice: {domesticPrice}</span>
-      <br />
-      <span>domesticQuantity: {domesticQuantity}</span>
-      <br />
-
-      <br />
-      <span>foreignMultiplier: {foreignMultiplier}</span>
-      <br />
-      <span>foreignSubsidy: {foreignSubsidy}</span>
-      <br />
-      <span>foreignPrice: {foreignPrice}</span>
-      <br />
-      <span>foreignQuantity: {foreignQuantity}</span>
-      <br />
-
-      <br />
-      <span>importQuantity: {importQuantity}</span>
-      <br />
-      <span>exportQuantity: {exportQuantity}</span>
-      <br />
-
-      <br />
-      <span>
-        domesticProtection: {domesticProtection} (
-        {protectionMap[domesticProtection]})
-      </span>
-      <br />
-      <span>domesticProtectionValue: {domesticProtectionValue}</span>
-      <br />
-
-      <br />
-      <span>
-        foreignProtection: {foreignProtection} (
-        {protectionMap[foreignProtection]})
-      </span>
-      <br />
-      <span>foreignProtectionValue: {foreignProtectionValue}</span>
-      <br />
-      <span>foreignAggressionIndex: {foreignAggressionIndex}</span>
-      <br />
-      <br />
-      <br />
-      <span>
-        domesticProtectionBuffer: {domesticProtectionBuffer} (
-        {protectionMap[domesticProtectionBuffer]})
-      </span>
-      <br />
-      <span>
-        domesticProtectionValueBuffer: {domesticProtectionValueBuffer}
-      </span>
-      <br />
-      <span>subsidizeDomesticValueBuffer: {subsidizeDomesticValueBuffer}</span>
-      <br />
-
-      <select
-        className="simulation_trade_type"
-        onClick={(e) => setDomesticProtectionBuffer(e.target.value)}
-        disabled={!userTurn}
-      >
-        <option value="0">Request free-trade</option>
-        <option value="1">Impose Tariff</option>
-        <option value="2">Impose Quota</option>
-        <option value="3">Impose Subsidy</option>
-      </select>
-
+      <pre>
+        <code>{JSON.stringify(promptData, null, 2)}</code>
+      </pre>
       <input
-        type="number"
-        placeholder={protectionMap[domesticProtectionBuffer]}
-        min={1}
-        value={domesticProtectionValueBuffer}
-        onChange={(e) =>
-          setDomesticProtectionValueBuffer(Number(e.target.value))
-        }
-        disabled={!userTurn}
+        type="text"
+        placeholder="Decision (type anything)"
+        onChange={(e) => setValue(e.target.value)}
+        onKeyDown={(e) => {
+          if (e.key == "Enter") {
+            handleEnter(e.target);
+          }
+        }}
       />
-
-      <input
-        type="number"
-        placeholder="Normal Subsidy"
-        min={0}
-        value={subsidizeDomesticValueBuffer}
-        onChange={(e) =>
-          setSubsidizeDomesticValueBuffer(Number(e.target.value))
-        }
-        disabled={!userTurn}
-      />
-
       <input
         type="button"
-        value="End Turn"
-        onClick={() => {
-          handleNextFrame();
-          setUserTurn(true);
-        }}
-        disabled={!userTurn}
+        value="&#8594;"
+        onClick={(e) => handleNextTurn(e.target.previousSibling)}
       />
     </>
   );
