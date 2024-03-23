@@ -4,11 +4,13 @@
 
 .simulation_messages {
     --simulation_messages_padding: 5px;
+    --simulation_messages_padding_bottom: 25px;
     display: flex;
     flex-direction: column;
     gap: 10px;
-    height: calc(100% - 2*var(--simulation_messages_padding));
+    height: calc(100% - var(--simulation_messages_padding) - var(--simulation_messages_padding_bottom));
     padding: var(--simulation_messages_padding);
+    padding-bottom: var(--simulation_messages_padding_bottom);
     overflow: hidden;
     overflow-y: auto;
 }
@@ -29,5 +31,6 @@
 }
 
 .simulation_turn_input {
+    z-index: 1;
     flex: 1;
 }

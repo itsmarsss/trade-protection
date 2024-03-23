@@ -60,6 +60,7 @@
 .message_ai_motivation:hover>.tooltip {
     opacity: 1;
     height: auto;
+    box-shadow: #cccccc80 0px 5px 10px;
 }
 
 @keyframes message_entry_fadein {
