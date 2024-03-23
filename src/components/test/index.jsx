@@ -204,7 +204,9 @@ const Test = ({ mode }) => {
 
   return (
     <>
-      <div className="test_title">{mode == 0 ? "Memory" : "Identify"}</div>
+      <div className="test_title">
+        {mode == 0 ? "Memory" : mode == 1 ? "Identify" : "Case Study"}
+      </div>
       {mode == 1 ? (
         <>
           <div className="test_scenario">
@@ -223,7 +225,7 @@ const Test = ({ mode }) => {
             </span>
           </div>
         </>
-      ) : (
+      ) : mode == 1 ? (
         <>
           <div className="test_arguments">
             <div className="test_arguments_for">
@@ -253,6 +255,11 @@ const Test = ({ mode }) => {
               </ul>
             </div>
           </div>
+        </>
+      ) : (
+        <>
+          <video></video>
+          <span></span>
         </>
       )}
       <div className="test_panel">

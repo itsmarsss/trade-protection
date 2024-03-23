@@ -36,7 +36,7 @@ const App = () => {
         "Free trade versus trade protection",
       ],
     },
-    { title: "Mode", options: ["Memory", "Identify"] },
+    { title: "Mode", options: ["Memory", "Identify", "Case Study"] },
     { title: "Trade Simulator", options: ["Simulate"] },
   ];
 
