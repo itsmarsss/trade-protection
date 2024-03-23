@@ -87,7 +87,7 @@ const App = () => {
 
   return (
     <>
-      <div ref={contentRef}>
+      <div className="app" ref={contentRef}>
         <NavBar text={"TRADE PROTECTION"} switchTabs={switchTab} />
         <SideBar
           title={tabs[tab].title}

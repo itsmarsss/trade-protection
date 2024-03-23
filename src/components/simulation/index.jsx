@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./styles.css";
 import Message from "../message";
 
@@ -9,6 +9,8 @@ const Simulation = () => {
   const [exported, setExported] = useState("");
   const [promptData, setPromptData] = useState({});
   const [value, setValue] = useState("");
+
+  const chatRef = useRef(null);
 
   const handleSetup = () => {
     const tempPromptData = {
@@ -97,13 +99,21 @@ Your response will STRICTLY follow this JSON structure, DO NO add anything else:
     tempPromptData.messages.push(responseMessage);
 
     setPromptData(tempPromptData);
+
     e.value = "";
   };
+
+  useEffect(() => {
+    chatRef.current.scrollTo({
+      top: chatRef.current.scrollHeight,
+      behavior: "smooth",
+    });
+  }, [promptData]);
 
   return (
     <>
       <div className="simulation">
-        <div className="simulation_messages">
+        <div className="simulation_messages" ref={chatRef}>
           {promptData.messages ? (
             promptData.messages.slice(1).map((message, index) => {
               const parsedMessage =
