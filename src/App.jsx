@@ -70,21 +70,16 @@ const App = () => {
       });
     });
 
-    document.addEventListener("scroll", () => {
-      if (window.scrollY >= 255) {
-        if (sideBarRef) {
-          if (sideBarRef.current) {
-            sideBarRef.current.classList.add("sticky");
-          }
-        }
-      } else {
-        if (sideBarRef) {
-          if (sideBarRef.current) {
-            sideBarRef.current.classList.remove("sticky");
-          }
+    setInterval(() => {
+      if (sideBarRef) {
+        if (sideBarRef.current) {
+          sideBarRef.current.style.transform = `translateY(${Math.max(
+            window.scrollY - 250,
+            0
+          )}px)`;
         }
       }
-    });
+    }, 50);
   }, []);
 
   const contentRef = React.createRef();

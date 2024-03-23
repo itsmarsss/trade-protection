@@ -4,10 +4,7 @@
     left: 30px;
     width: 150px;
     height: 275px;
-}
-
-.sidebar.sticky {
-    position: fixed;
+    transition: ease-out 200ms;
 }
 
 .sidebar_title {
