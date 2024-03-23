@@ -14,6 +14,8 @@ const App = () => {
   const [prevX, setPrevX] = useState(0);
   const [slide, setSlide] = useState(false);
 
+  const sideBarRef = useRef(null);
+
   const switchTab = (index) => {
     setTab(index);
     handleSelected(0);
@@ -67,6 +69,22 @@ const App = () => {
         puffer.style.transform = `scale(${size})`;
       });
     });
+
+    document.addEventListener("scroll", () => {
+      if (window.scrollY >= 255) {
+        if (sideBarRef) {
+          if (sideBarRef.current) {
+            sideBarRef.current.classList.add("sticky");
+          }
+        }
+      } else {
+        if (sideBarRef) {
+          if (sideBarRef.current) {
+            sideBarRef.current.classList.remove("sticky");
+          }
+        }
+      }
+    });
   }, []);
 
   const contentRef = React.createRef();
@@ -89,6 +107,7 @@ const App = () => {
       <div className="app" ref={contentRef}>
         <NavBar text={"TRADE PROTECTION"} switchTabs={switchTab} />
         <SideBar
+          reference={sideBarRef}
           title={tabs[tab].title}
           options={tabs[tab].options}
           selected={selected}
