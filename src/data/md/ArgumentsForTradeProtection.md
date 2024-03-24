@@ -2,16 +2,16 @@
 
 ## Table of Content
 
-- [Protection of infant (sunrise) industries](./#protectionofinfantsunriseindustries)
-- [National security](./#nationalsecurity)
-- [Maintenance of health and safety](./#maintenanceofhealthandsafety)
-- [Environmental standard](./#environmentalstandard)
-- [Anti-dumping](./#antidumping)
-- [Unfair competition](./#unfaircompetition)
-- [Balance-of-payments correction](./#balanceofpaymentscorrection)
-- [Sources of government revenue](./#sourcesofgovernmentrevenue)
-- [Protection of jobs](./#protectionofjobs)
-- [Economically least developed country (ELDC) diversification](./#economicallyleastdevelopedcountryelcdiversification)
+- [Protection of Infant (Sunrise) Industries](./#protectionofinfantsunriseindustries)
+- [National Security](./#nationalsecurity)
+- [Maintenance of Health and Safety](./#maintenanceofhealthandsafety)
+- [Environmental Standard](./#environmentalstandard)
+- [Anti-Dumping](./#antidumping)
+- [Unfair Competition](./#unfaircompetition)
+- [Balance-of-Payments Correction](./#balanceofpaymentscorrection)
+- [Sources of Government Revenue](./#sourcesofgovernmentrevenue)
+- [Protection of Jobs](./#protectionofjobs)
+- [Economically Least Developed Country (ELDC) Diversification](./#economicallyleastdevelopedcountryeldcdiversification)
 
 ## Protection of Infant (Sunrise) Industries
 

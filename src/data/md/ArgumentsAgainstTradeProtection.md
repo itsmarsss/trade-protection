@@ -7,7 +7,7 @@
 - [Increased Costs](./#increasedcosts)
 - [Higher Prices](./#higherprices)
 - [Less Choice](./#lesschoice)
-- [Lack of Incentives for Domestic Firms to Become More Efficient](./#lackofincentivefordomesticfirmstobecomemoreefficient)
+- [Lack of Incentives for Domestic Firms to Become More Efficient](./#lackofincentivesfordomesticfirmstobecomemoreefficient)
 - [Reduced Export Competitiveness](./#reducedexportcompetitiveness)
 
 ## Misallocation of Resources
