@@ -24,16 +24,8 @@ export default function CursorFollower() {
         target.closest(".pagemap") ||
         target.closest(".tooltip");
       gsap.to(cursor, {
-        x:
-          x -
-          ((isTargetLinkOrBtn ? 1 / 3.5 : 1) *
-            cursor.getBoundingClientRect().width) /
-            2,
-        y:
-          y -
-          ((isTargetLinkOrBtn ? 1 / 3.5 : 1) *
-            cursor.getBoundingClientRect().height) /
-            2,
+        x: x - 10,
+        y: y - 10,
         duration: 1,
         ease: "power4",
         opacity: isTargetLinkOrBtn ? 0.5 : 1,
@@ -45,6 +37,26 @@ export default function CursorFollower() {
       gsap.to(cursor, {
         duration: 1,
         opacity: 0,
+      });
+    });
+
+    document.addEventListener("mousedown", (e) => {
+      const { target, x, y } = e;
+      const isTargetLinkOrBtn =
+        target.closest("a") ||
+        target.closest("button") ||
+        target.closest("input") ||
+        target.closest(".baritem") ||
+        target.closest(".sidebar_option") ||
+        target.closest(".pagemap") ||
+        target.closest(".tooltip");
+      gsap.to(cursor, {
+        x: x - 10,
+        y: y - 10,
+        duration: 1,
+        ease: "power4",
+        opacity: isTargetLinkOrBtn ? 0.25 : 0.5,
+        transform: `scale(${isTargetLinkOrBtn ? 5.5 : 2})`,
       });
     });
   }, []);
