@@ -7,22 +7,18 @@ const Message = ({ role, message }) => {
   const messageRef = useRef(null);
 
   const handleChangeView = () => {
-    if (messageRef) {
-      if (messageRef.current) {
-        messageRef.current.style.filter = "blur(5px)";
-      }
+    if (messageRef.current) {
+      messageRef.current.style.filter = "blur(5px)";
     }
 
     setTimeout(() => {
       setShowState(!showState);
     }, 25);
 
-    if (messageRef) {
-      if (messageRef.current) {
-        setTimeout(() => {
-          messageRef.current.style.filter = "blur(0px)";
-        }, 50);
-      }
+    if (messageRef.current) {
+      setTimeout(() => {
+        messageRef.current.style.filter = "blur(0px)";
+      }, 50);
     }
   };
 

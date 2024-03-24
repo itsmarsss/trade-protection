@@ -14,6 +14,7 @@ const App = () => {
   const [prevX, setPrevX] = useState(0);
   const [slide, setSlide] = useState(false);
 
+  const addedRef = useRef(false);
   const sideBarRef = useRef(null);
 
   const switchTab = (index) => {
@@ -43,6 +44,11 @@ const App = () => {
   ];
 
   useEffect(() => {
+    if (addedRef.current) {
+      return;
+    }
+
+    addedRef.current = true;
     document.addEventListener("mousemove", (e) => {
       if (e.y + window.scrollY > 250) {
         const puffers = document.getElementsByClassName("puff_letter");
@@ -71,13 +77,11 @@ const App = () => {
     });
 
     setInterval(() => {
-      if (sideBarRef) {
-        if (sideBarRef.current) {
-          sideBarRef.current.style.transform = `translateY(${Math.max(
-            window.scrollY - 250,
-            0
-          )}px)`;
-        }
+      if (sideBarRef.current) {
+        sideBarRef.current.style.transform = `translateY(${Math.max(
+          window.scrollY - 250,
+          0
+        )}px)`;
       }
     }, 50);
   }, []);
@@ -87,7 +91,7 @@ const App = () => {
     selector: {
       "h1,a,.baritem,.sidebar_title,.test_title": "#ffffffcc",
       "h2,h3,h4,span,li,cursor": "#ffffff99",
-      "header,footer,section,article,input": "#ffffff33",
+      "header,footer,section,article,input,p": "#ffffff33",
       div: "#ffffff05",
     },
     width: 100,
