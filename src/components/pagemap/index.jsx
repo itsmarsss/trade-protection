@@ -1,9 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import "./styles.css";
 import { useCanvas } from "../../hooks/useCanvas";
 
 const Pagemap = ({ container, options }) => {
   const [canvasRef, setContainerRef, setDrag, drag] = useCanvas(options);
+
+  const coordYRef = useRef(0);
 
   useEffect(() => {
     setContainerRef(container.current);
@@ -29,6 +31,10 @@ const Pagemap = ({ container, options }) => {
   };
 
   const handleOnMouseMove = (ev) => {
+    if (Math.abs(coordYRef.current - ev.clientY) < 10) {
+      return;
+    }
+    document.documentElement.style.scrollBehavior = "auto";
     if (drag) {
       handleDrag(ev);
     }
@@ -40,7 +46,8 @@ const Pagemap = ({ container, options }) => {
   };
 
   const handleOnMouseDown = (ev) => {
-    document.documentElement.style.scrollBehavior = "auto";
+    coordYRef.current = ev.clientY;
+    document.documentElement.style.scrollBehavior = "smooth";
     setDrag(true);
     handleDrag(ev);
   };
@@ -53,7 +60,6 @@ const Pagemap = ({ container, options }) => {
       onMouseLeave={handleFinishDrag}
       onMouseDown={handleOnMouseDown}
       ref={canvasRef}
-      style={{ cursor: "pointer" }}
     ></canvas>
   );
 };

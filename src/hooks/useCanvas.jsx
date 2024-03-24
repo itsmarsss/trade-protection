@@ -8,6 +8,10 @@ export function useCanvas(options) {
 
   const onDraw = (ctx) => {
     if (containerRef) {
+      options.height =
+        document.body.scrollHeight *
+        (options.width / document.body.scrollWidth);
+      canvasRef.current.style.height = options.height + "px";
       draw(options, ctx, containerRef, drag);
     }
   };
@@ -15,9 +19,6 @@ export function useCanvas(options) {
   useEffect(() => {
     const canvasObj = canvasRef.current;
     const ctx = canvasObj.getContext("2d");
-
-    options.height =
-      document.body.scrollHeight * (options.width / document.body.scrollWidth);
 
     resizeCanvas(canvasObj, options.width, options.height);
     onDraw(ctx);
