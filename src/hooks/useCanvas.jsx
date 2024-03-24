@@ -1,18 +1,14 @@
 import { useEffect, useRef, useState } from "react";
-import { resizeCanvas, draw } from "../utils/canvasUtils";
+import { draw } from "../utils/canvasUtils";
 
 export function useCanvas(options) {
   const canvasRef = useRef(null);
   const [containerRef, setContainerRef] = useState(null);
   const [drag, setDrag] = useState(false);
 
-  const onDraw = (ctx) => {
+  const onDraw = (ctx, canvasObj) => {
     if (containerRef) {
-      options.height =
-        document.body.scrollHeight *
-        (options.width / document.body.scrollWidth);
-      canvasRef.current.style.height = options.height + "px";
-      draw(options, ctx, containerRef, drag);
+      draw(options, ctx, containerRef, canvasObj, drag);
     }
   };
 
@@ -20,11 +16,8 @@ export function useCanvas(options) {
     const canvasObj = canvasRef.current;
     const ctx = canvasObj.getContext("2d");
 
-    resizeCanvas(canvasObj, options.width, options.height);
-    onDraw(ctx);
-
     const intervalId = setInterval(() => {
-      onDraw(ctx);
+      onDraw(ctx, canvasObj);
     }, 50);
 
     return () => clearInterval(intervalId);

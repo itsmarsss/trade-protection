@@ -9,7 +9,7 @@ const Pagemap = ({ container, options }) => {
 
   useEffect(() => {
     setContainerRef(container.current);
-  }, [container, setContainerRef]);
+  }, [container]);
 
   const handleDrag = (ev) => {
     ev.preventDefault();

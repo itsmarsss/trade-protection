@@ -71,7 +71,12 @@ const drawBackground = (options, container, context) => {
   );
 };
 
-export const draw = (options, ctx, containerRef, isDrag) => {
+export const draw = (options, ctx, containerRef, canvasObj, isDrag) => {
+  options.height =
+    containerRef.scrollHeight * (options.width / containerRef.scrollWidth);
+
+  resizeCanvas(canvasObj, options.width, options.height);
+
   //draw background
   drawBackground(options, containerRef, ctx);
   //content
