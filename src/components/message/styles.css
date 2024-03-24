@@ -65,6 +65,19 @@
     box-shadow: #cccccc80 0px 5px 10px;
 }
 
+.message_game {
+    transition: 50ms;
+}
+
+.message_game_toggle {
+    margin-top: 10px;
+    width: 100%;
+    height: 30px;
+    padding: 0;
+    padding-bottom: 5px;
+    font-size: 13px;
+}
+
 @keyframes message_entry_fadein {
     from {
         opacity: 0;

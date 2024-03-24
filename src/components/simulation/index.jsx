@@ -26,7 +26,7 @@ const Simulation = () => {
             role: "system",
             content: `You, AI, will act as a country engaging in trade negotiations with the user, USER, representing another country. There are only 2 products: ${imported}, which AI exports to USER's country, and ${exported}, which AI imports from USER's country. Both countries have the option to impose tariffs or quotas on products or subsidize their own firms. They may also invest in their firms to increase output and decrease prices. This will be a turn-based game where USER makes the initial decision, and AI will respond with the consequences of USER's decision while also making a choice for AI's country.
 
-You will be talking DIRECTLY to the USER, you will STRICTLY use "you" instead of "USER" and "I" instead of "AI".
+You will be talking DIRECTLY to the USER, you will STRICTLY use "you" instead of "USER" and STRICTLY USE "I" instead of "AI".
 
 You will STRICTLY get all values presented by the user correct in your response.
 
