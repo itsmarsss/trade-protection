@@ -137,6 +137,7 @@ export const forArgs = [
   {
     main: "Economically least developed country (ELDC) diversification",
     alt: [
+      "ELDC diversification",
       "Expanding ELDC economies",
       "Diversifying less developed nations' economies",
       "Broadening ELDC economic base",
@@ -146,7 +147,6 @@ export const forArgs = [
       "Developing diversified economies in ELDCs",
       "Encouraging economic expansion in less developed nations",
       "Fostering economic diversification in less developed countries",
-      "Supporting economic variety in economically least developed nations",
     ],
   },
 ];
@@ -228,18 +228,18 @@ export const againstArgs = [
     ],
   },
   {
-    main: "Lack of incentive for domestic firms to become more efficient",
+    main: "Lack of incentives for domestic firms to become more efficient",
     alt: [
+      "Lack of incentives",
       "Absence of motivation for local firms to enhance efficiency",
       "Incentive gap for domestic firms' efficiency improvement",
       "Diminished drive for domestic companies' efficiency enhancement",
       "Lack of encouragement for local firms to improve efficiency",
       "Deficiency of motivation for domestic firms to boost efficiency",
       "Absence of impetus for local companies to enhance efficiency",
-      "Insufficient incentive for domestic enterprises to improve efficiency",
+      "Insufficient incentives for domestic enterprises to improve efficiency",
       "Inadequate motivation for local firms to increase efficiency",
       "Deficiency of drive for domestic firms' efficiency enhancement",
-      "Shortage of encouragement for local firms to enhance efficiency",
     ],
   },
   {
@@ -275,7 +275,7 @@ export const allArgs = [
   "Increased costs",
   "Higher prices",
   "Less choice",
-  "Lack of incentive for domestic firms to become more efficient",
+  "Lack of incentives for domestic firms to become more efficient",
   "Reduced export competitiveness",
 ];
 
@@ -431,7 +431,7 @@ export const scenarios = [
     ],
   },
   {
-    answer: "Lack of incentive for domestic firms to become more efficient",
+    answer: "Lack of incentives for domestic firms to become more efficient",
     scenarios: [
       "Protectionist policies shield domestic firms from foreign competition, reducing the pressure to innovate and improve efficiency to remain competitive in the global market.",
       "Subsidies provided to domestic industries artificially lower production costs, diminishing the motivation for firms to adopt cost-saving technologies and streamline operations.",

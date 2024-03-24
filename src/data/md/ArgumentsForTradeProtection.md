@@ -36,7 +36,7 @@ Similar to **Maintenance of Health and Safety** of citizens, the environment is 
 
 ## Anti-Dumping
 
-Dumping refers to foreign firms pricing their goods below production cost. This is a type of predatory pricing behaviour when done abroad. An importer may "dump" goods abroad to dominate in a new market. This practice is deemed illegal by the WTO, and countries can avoid this by implementing protectionist measures to protect domestic industries.
+Dumping refers to foreign firms pricing their goods below production cost when exporting. This is a type of predatory pricing behaviour when done abroad. An importer may "dump" goods abroad to dominate in a new market. This practice is deemed illegal by the WTO, and countries can avoid this by implementing protectionist measures to protect domestic industries.
 
 ## Unfair Competition
 
