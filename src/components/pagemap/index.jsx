@@ -35,10 +35,12 @@ const Pagemap = ({ container, options }) => {
   };
 
   const handleFinishDrag = () => {
+    document.documentElement.style.scrollBehavior = "smooth";
     setDrag(false);
   };
 
   const handleOnMouseDown = (ev) => {
+    document.documentElement.style.scrollBehavior = "auto";
     setDrag(true);
     handleDrag(ev);
   };
