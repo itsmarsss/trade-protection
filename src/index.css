@@ -96,3 +96,8 @@ input:focus-visible {
   border-color: var(--background);
   outline: 2px solid var(--accent);
 }
+
+::selection {
+  background: var(--accent-transparent);
+  color: var(--text);
+}
