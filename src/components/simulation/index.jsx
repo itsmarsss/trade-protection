@@ -5,6 +5,8 @@ import Message from "../message";
 const Simulation = () => {
   const OPENAIKEY = import.meta.env.VITE_OPENAIKEY;
 
+  const [apiKey, setApiKey] = useState("");
+
   const [imported, setImported] = useState("");
   const [exported, setExported] = useState("");
   const [promptData, setPromptData] = useState({});
@@ -95,47 +97,62 @@ Your response will STRICTLY follow this JSON structure, DO NO add anything else:
   };
 
   const handleNextTurn = async (e) => {
-    if (value.trim() == "") {
-      inputRef.current.focus();
-      return;
+    try {
+      if (value.trim() == "") {
+        inputRef.current.focus();
+        return;
+      }
+
+      setBuffering(true);
+
+      const userChoice = {
+        role: "user",
+        content: value.trim(),
+      };
+
+      const tempPromptData = { ...promptData };
+      tempPromptData.messages.push(userChoice);
+
+      const response = await fetch(
+        `https://api.openai.com/v1/chat/completions`,
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${
+              OPENAIKEY == "MANUAL" ? apiKey : OPENAIKEY
+            }`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            model: "gpt-3.5-turbo",
+            ...tempPromptData,
+            temperature: 0.7,
+            max_tokens: 256,
+            top_p: 1,
+            frequency_penalty: 0,
+            presence_penalty: 0,
+          }),
+        }
+      );
+
+      const responseJSON = await response.json();
+
+      const responseMessage = responseJSON.choices[0].message;
+      tempPromptData.messages.push(responseMessage);
+
+      setPromptData(tempPromptData);
+
+      e.value = "";
+      setBuffering(false);
+    } catch (e) {
+      setBuffering(false);
+      setError(true);
+      return {
+        gameState: "Error.",
+        oppDecision: "Error.",
+        oppMotivation: "Error.",
+      };
     }
-
-    setBuffering(true);
-
-    const userChoice = {
-      role: "user",
-      content: value.trim(),
-    };
-
-    const tempPromptData = { ...promptData };
-    tempPromptData.messages.push(userChoice);
-
-    const response = await fetch(`https://api.openai.com/v1/chat/completions`, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${OPENAIKEY}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        model: "gpt-3.5-turbo",
-        ...tempPromptData,
-        temperature: 0.7,
-        max_tokens: 256,
-        top_p: 1,
-        frequency_penalty: 0,
-        presence_penalty: 0,
-      }),
-    });
-
-    const responseJSON = await response.json();
-
-    const responseMessage = responseJSON.choices[0].message;
-    tempPromptData.messages.push(responseMessage);
-
-    setPromptData(tempPromptData);
-
-    e.value = "";
-    setBuffering(false);
   };
 
   const handleRestart = () => {
@@ -151,6 +168,7 @@ Your response will STRICTLY follow this JSON structure, DO NO add anything else:
           : messageContent
       );
     } catch (e) {
+      setBuffering(false);
       setError(true);
       return {
         gameState: "Error.",
@@ -204,6 +222,22 @@ Your response will STRICTLY follow this JSON structure, DO NO add anything else:
             <div className="simulation_setup_cont slide" ref={setUpRef}>
               <div>Choose products to import/export:</div>
               <div className="simulation_setup">
+                {OPENAIKEY == "MANUAL" && (
+                  <>
+                    <span>Imported Good:</span>
+                    <input
+                      autoComplete="off"
+                      type="password"
+                      placeholder="OpenAI API Key"
+                      value={apiKey}
+                      onChange={(e) => setApiKey(e.target.value)}
+                      onKeyUp={(e) => {
+                        if (e.key == "Enter") importRef.current.focus();
+                      }}
+                    />
+                    <br />
+                  </>
+                )}
                 <span>Imported Good:</span>
                 <input
                   ref={importRef}
