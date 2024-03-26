@@ -224,7 +224,7 @@ Your response will STRICTLY follow this JSON structure, DO NO add anything else:
               <div className="simulation_setup">
                 {OPENAIKEY == "MANUAL" && (
                   <>
-                    <span>Imported Good:</span>
+                    <span>OpenAI API Key:</span>
                     <input
                       autoComplete="off"
                       type="password"
