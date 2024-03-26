@@ -22,28 +22,28 @@ Governments can support infant industries by employing administrative barriers s
 
 ## National Security
 
-There are goods and services that are preferred to be produced domestically due to national security concerns. A major consideration is the defence industry, it is unwise for a government to heavily rely on importing military equipment.
+Some goods and services are preferred to be produced domestically due to national security concerns. A major consideration is the defense industry, it is unwise for a government to heavily rely on importing military equipment.
 
 In 2024, the USA remains the largest military equipment dealer,
 
 ## Maintenance of Health and Safety
 
-To keep the citizens of a country safe, governments must enforce health and safety laws on goods or services. If a good poses threats to consumer health and safety, it is likely that a government will impose trade protection to either minimize or completely remove the good from circulation.
+To keep the citizens of a country safe, governments must enforce health and safety laws on goods or services. If a good poses threats to consumer health and safety, a government will likely impose trade protection to either minimize or completely remove the good from circulation.
 
 ## Environmental Standard
 
-Similar to **Maintenance of Health and Safety** of citizens, the environment is also just as important. If a good does not comply with environmental standards, the government will impose trade protection to either minimize or completely remove the good from circulation.
+Similar to the **Maintenance of Health** and Safety of citizens, the environment is also just as important. If a good does not comply with environmental standards, the government will impose trade protection to either minimize or completely remove the good from circulation.
 
 ## Anti-Dumping
 
-Dumping refers to foreign firms pricing their goods below production cost when exporting. This is a type of predatory pricing behaviour when done abroad. An importer may "dump" goods abroad to dominate in a new market. This practice is deemed illegal by the WTO, and countries can avoid this by implementing protectionist measures to protect domestic industries.
+Dumping refers to foreign firms pricing their goods below production cost when exporting. This is a type of predatory pricing behavior when done abroad. An importer may "dump" goods abroad to dominate in a new market. This practice is deemed illegal by the WTO, and countries can avoid this by implementing protectionist measures to protect domestic industries.
 
 ## Unfair Competition
 
 > **&#9432; Note:**  
 > A patent gives a firm the sole right to exclude others from producing an identical or similar good. It provides firms with the time required to earn substantial profits in exchange for taking the risk of investing a lot of money in the research and development stage.
 
-Governments can protect domestic innovators and inventors by using patents. This can help prevent the importation of goods identical to the ones produced locally. If a country lacks the infrastucture to enforce international patent laws, foreign firms can reverse engineer goods produced by domestic firms.
+Governments can protect domestic innovators and inventors by using patents. This can help prevent the importation of goods identical to the ones produced locally. If a country lacks the infrastructure to enforce international patent laws, foreign firms can reverse engineer goods produced by domestic firms.
 
 ## Balance-of-Payments Correction
 

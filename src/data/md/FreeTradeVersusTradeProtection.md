@@ -33,7 +33,7 @@ Free trade allows each country to specialize in producing the goods that they ha
 ### Free Trade Cons:
 
 > **&#9432; Note:**  
-> The terms of trade measures a country’s export prices in relation to its import pricess
+> The terms of trade measures a country’s export prices in relation to its import prices
 
 Although free trade appears to be beneficial to all involved, the pros are not completely shared equally. The terms of trade heavily influence which countries benefit. Subsidies and larger economies can disadvantage smaller producers, leading to unequal gains from trade and potential exploitation.
 
