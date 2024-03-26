@@ -28,7 +28,7 @@ const Train = ({ page }) => {
             h2: (props) => {
               return (
                 <h2 id={props.children.toLowerCase().replace(/[^a-z0-9]/g, "")}>
-                  {props.children}
+                  <span onClick={() => navigator.clipboard.writeText(window.location.origin + "/#" + props.children.toLowerCase().replace(/[^a-z0-9]/g, ""))}>#</span> {props.children}
                 </h2>
               );
             },

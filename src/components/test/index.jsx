@@ -22,6 +22,8 @@ const Test = ({ mode }) => {
   const [attempt, setAttempt] = useState(0.00001);
   const [second, setSecond] = useState(0);
   const [history, setHistory] = useState([]);
+
+  const inputRef = useRef(null);
   const timerIdRef = useRef(null);
 
   useEffect(() => {
@@ -274,7 +276,7 @@ const Test = ({ mode }) => {
         <>
           <div className="test_scenario">
             <span>
-              <b>Argument for scenario:</b> {scenario}
+              <b>Scenario:</b> {scenario}
             </span>
             <br />
             <br />
@@ -313,6 +315,7 @@ const Test = ({ mode }) => {
       <div className="test_panel">
         <div className="test_panel_input">
           <input
+          ref={inputRef}
             className="test_panel_guess"
             placeholder="Type answer..."
             type="text"
@@ -327,7 +330,7 @@ const Test = ({ mode }) => {
             className="test_panel_go"
             type="button"
             value="&#8594;"
-            onClick={(e) => handleEnter(e.target.previousSibling)}
+            onClick={() => handleEnter(inputRef.current)}
           />
           <input
             className="test_panel_restart"

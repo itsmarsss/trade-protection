@@ -45,10 +45,6 @@ h1 {
   border-bottom: 1px solid var(--text);
 }
 
-h2:before {
-  content: "# ";
-}
-
 i {
   font-family: sans-serif;
 }

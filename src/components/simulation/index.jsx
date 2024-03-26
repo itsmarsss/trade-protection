@@ -220,7 +220,7 @@ Your response will STRICTLY follow this JSON structure, DO NO add anything else:
           <input
             type="button"
             value="&#8594;"
-            onClick={(e) => handleNextTurn(e.target.previousSibling)}
+            onClick={() => handleNextTurn(inputRef.current)}
             disabled={buffering}
           />
           <input
