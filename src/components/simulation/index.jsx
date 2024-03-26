@@ -12,11 +12,28 @@ const Simulation = () => {
   const [buffering, setBuffering] = useState(false);
   const [error, setError] = useState(false);
 
+  const importRef = useRef(null);
+  const exportRef = useRef(null);
+  const saveRef = useRef(null);
+
   const setUpRef = useRef(null);
   const chatRef = useRef(null);
   const inputRef = useRef(null);
 
   const handleSetup = () => {
+    if (imported.trim() == "") {
+      importRef.current.focus();
+      return;
+    }
+
+    if (exported.trim() == "") {
+      exportRef.current.focus();
+      return;
+    }
+
+    setImported(imported.trim());
+    setExported(exported.trim());
+
     setUpRef.current.classList.add("flip");
 
     setTimeout(() => {
@@ -24,7 +41,7 @@ const Simulation = () => {
         messages: [
           {
             role: "system",
-            content: `You, AI, will act as a country engaging in trade negotiations with the user, USER, representing another country. There are only 2 products: ${imported}, which AI exports to USER's country, and ${exported}, which AI imports from USER's country. Both countries have the option to impose tariffs or quotas on products or subsidize their own firms. They may also invest in their firms to increase output and decrease prices. This will be a turn-based game where USER makes the initial decision, and AI will respond with the consequences of USER's decision while also making a choice for AI's country.
+            content: `You, AI, will act as a country engaging in trade negotiations with the user, USER, representing another country. There are only 2 products: ${imported.trim()}, which AI exports to USER's country, and ${exported.trim()}, which AI imports from USER's country. Both countries have the option to impose tariffs or quotas on products or subsidize their own firms. They may also invest in their firms to increase output and decrease prices. This will be a turn-based game where USER makes the initial decision, and AI will respond with the consequences of USER's decision while also making a choice for AI's country.
 
 You will be talking DIRECTLY to the USER, you will STRICTLY use "you" instead of "USER" and STRICTLY USE "I" instead of "AI".
 
@@ -78,11 +95,16 @@ Your response will STRICTLY follow this JSON structure, DO NO add anything else:
   };
 
   const handleNextTurn = async (e) => {
+    if (value.trim() == "") {
+      inputRef.current.focus();
+      return;
+    }
+
     setBuffering(true);
 
     const userChoice = {
       role: "user",
-      content: value,
+      content: value.trim(),
     };
 
     const tempPromptData = { ...promptData };
@@ -152,7 +174,12 @@ Your response will STRICTLY follow this JSON structure, DO NO add anything else:
 
   return (
     <>
-      <div className="simulation_title">Simulation</div>
+      <div className="simulation_title">
+        Simulation{" "}
+        <span className="small">
+          (Enter a game of trade with a country powered by AI)
+        </span>
+      </div>
       <div className="simulation">
         <div className="simulation_messages" ref={chatRef}>
           {promptData.messages ? (
@@ -179,20 +206,33 @@ Your response will STRICTLY follow this JSON structure, DO NO add anything else:
               <div className="simulation_setup">
                 <span>Imported Good:</span>
                 <input
+                  ref={importRef}
                   type="text"
                   placeholder="Imported item"
                   value={imported}
                   onChange={(e) => setImported(e.target.value)}
+                  onKeyUp={(e) => {
+                    if (e.key == "Enter") exportRef.current.focus();
+                  }}
                 />
                 <br />
                 <span>Exported Good:</span>
                 <input
+                  ref={exportRef}
                   type="text"
                   placeholder="Exported item"
                   value={exported}
                   onChange={(e) => setExported(e.target.value)}
+                  onKeyUp={(e) => {
+                    if (e.key == "Enter") saveRef.current.focus();
+                  }}
                 />
-                <input type="button" value="Save" onClick={handleSetup} />
+                <input
+                  ref={saveRef}
+                  type="button"
+                  value="Save"
+                  onClick={handleSetup}
+                />
               </div>
             </div>
           )}

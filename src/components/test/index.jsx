@@ -137,6 +137,11 @@ const Test = ({ mode }) => {
       return;
     }
 
+    if (value.trim() == "") {
+      inputRef.current.focus();
+      return;
+    }
+
     let sim = 0;
     let title = "N/A";
 
@@ -239,7 +244,28 @@ const Test = ({ mode }) => {
   return (
     <>
       <div className="test_title">
-        {mode == 0 ? "Memory" : mode == 1 ? "Identify" : "Case Study"}
+        {mode == 0 ? (
+          <>
+            Memory{" "}
+            <span className="small">
+              (List out all the arguments you remember)
+            </span>
+          </>
+        ) : mode == 1 ? (
+          <>
+            Identify{" "}
+            <span className="small">
+              (Identify the argument that applies to the scenario)
+            </span>
+          </>
+        ) : (
+          <>
+            Case Study{" "}
+            <span className="small">
+              (Free response discussion of a real world case with context)
+            </span>
+          </>
+        )}
       </div>
       {mode == 0 ? (
         <>
@@ -315,7 +341,7 @@ const Test = ({ mode }) => {
       <div className="test_panel">
         <div className="test_panel_input">
           <input
-          ref={inputRef}
+            ref={inputRef}
             className="test_panel_guess"
             placeholder="Type answer..."
             type="text"
