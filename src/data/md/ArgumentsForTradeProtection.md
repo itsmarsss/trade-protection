@@ -55,7 +55,7 @@ If a government implements a tariff on an imported good, it can provide revenue 
 
 ## Protection of Jobs
 
-Domestic producers may not be as competent enough to compete with foreign producers. This will often lead to domestic firms laying off employees as demand for domestic-produced goods drops. The government can alleviate this by implementing trade protection that boosts the demand for domestically produced goods.
+Domestic firms may not be as competent enough to compete with foreign firms. This will often lead to domestic firms laying off employees as demand for domestic-produced goods drops. The government can alleviate this by implementing trade protection that boosts the demand for domestically produced goods.
 
 ## Economically Least Developed Country (ELDC) Diversification
 

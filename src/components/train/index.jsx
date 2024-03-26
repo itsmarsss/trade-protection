@@ -32,6 +32,13 @@ const Train = ({ page }) => {
                 </h2>
               );
             },
+            h3: (props) => {
+              return (
+                <h3 id={props.children.toLowerCase().replace(/[^a-z0-9]/g, "")}>
+                  {props.children}
+                </h3>
+              );
+            },
           }}
         />
       </div>

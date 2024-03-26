@@ -34,7 +34,7 @@ Similar to what was explained in the **Increased Costs** section, the implementa
 
 ## Less Choice
 
-The implementation of trade protections will likely limit the amount of goods imported into a country. This will cause the market to have a limited amount of choices mostly provided by domestic producers.
+The implementation of trade protections will likely limit the amount of goods imported into a country. This will cause the market to have a limited amount of choices mostly provided by domestic firms.
 
 ## Lack of Incentives for Domestic Firms to Become More Efficient
 

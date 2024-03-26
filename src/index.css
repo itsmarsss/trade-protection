@@ -1,5 +1,7 @@
 :root {
   --text: #ffffffde;
+  --text-dark: #e0e0e0de;
+
   --background: #242424;
   --background-light: #363636;
   --background-glass: #00000050;
@@ -43,6 +45,13 @@ h1 {
   line-height: 1.1;
   padding-bottom: 10px;
   border-bottom: 1px solid var(--text);
+}
+
+h2,
+h3 {
+  margin-top: 25px;
+  padding-bottom: 10px;
+  border-bottom: 0.5px solid var(--text-dark);
 }
 
 i {
