@@ -25,6 +25,11 @@
   animation: 100ms linear slide_in;
 }
 
+.small {
+  margin-left: 10px;
+  font-size: 20px;
+}
+
 ::-webkit-scrollbar {
   width: 12px;
 }
